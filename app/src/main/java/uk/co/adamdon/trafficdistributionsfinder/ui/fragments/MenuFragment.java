@@ -2,6 +2,7 @@ package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
+import uk.co.adamdon.trafficdistributionsfinder.databinding.MenuFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.AbstractFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.MenuViewModel;
 
@@ -10,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 
@@ -36,21 +37,20 @@ public class MenuFragment extends AbstractFragment
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater pLayoutInflater, ViewGroup pViewGroup, Bundle pSavedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
-        final View lContentXmlView;
-        final ViewGroup lNestedContentView;
-//        HelloWorldBinding binding = DataBindingUtil.setContentView(this, R.layout.hello_world);
+        MenuFragmentBinding menuFragmentBinding;
 
-
-        lContentXmlView  = pLayoutInflater.inflate( R.layout.menu_fragment, pViewGroup, false);
-        lNestedContentView = nestContentInTemplateFrameLayout(lContentXmlView);
         menuViewModel = new ViewModelProvider(this).get( MenuViewModel.class);
 
 
+        menuFragmentBinding = MenuFragmentBinding.inflate(layoutInflater,viewGroup,false);
+        menuFragmentBinding.currentDistributionsButton.setOnClickListener(view -> menuViewModel.currentDistributionsOnClick());
 
 
-        return lNestedContentView;
+
+
+        return nestContentInTemplateFrameLayout(menuFragmentBinding.getRoot());
     }
 
 
