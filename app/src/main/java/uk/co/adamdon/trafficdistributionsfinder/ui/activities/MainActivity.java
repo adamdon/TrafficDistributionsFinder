@@ -42,10 +42,8 @@ public class MainActivity extends AbstractActivity
         getApp().getUiController().replaceFragmentByID( 1, new BlankFragment(getApp()));
 
 
-        String testthingString;
 
-        testthingString = getApp().getTestString();
 
-        showToast(testthingString);
+        showToast("testthingString");
     }
 }

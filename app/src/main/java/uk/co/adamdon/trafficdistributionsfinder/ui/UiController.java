@@ -5,7 +5,10 @@ import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.Application;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
@@ -21,12 +24,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
+import uk.co.adamdon.trafficdistributionsfinder.ui.activities.MainActivity;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 
 public class UiController
 {
 
     private App app;
+    private MainActivity currentActivity;
+
+
     private ArrayList<FrameLayout> containersFrameLayoutsList;
     private Boolean isBackEnabledBoolean;
     private Fragment previousSlot1Fragment;
@@ -40,6 +47,8 @@ public class UiController
     public UiController(App app)
     {
         this.app = app;
+        registerLifecycleCallbacks();
+
         isBackEnabledBoolean = true;
         previousSlot1Fragment = new BlankFragment(app);
         currentSlot1Fragment = new BlankFragment(app);
@@ -248,10 +257,47 @@ public class UiController
 
 
 
+    public void registerLifecycleCallbacks()
+    {
+        final Application.ActivityLifecycleCallbacks lActivityLifecycleCallbacks;
+
+        lActivityLifecycleCallbacks = new Application.ActivityLifecycleCallbacks()
+        {
+            @Override
+            public void onActivityCreated(Activity pActivity, Bundle pSavedInstanceBundle)
+            {
+                //log("ActivityLifecycle of onActivityCreated for" + pActivity.getClass().getSimpleName());
+                currentActivity = (MainActivity)pActivity;
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity)
+            {
+                //log("ActivityLifecycle of onActivityResumed for" + activity.getClass().getSimpleName());
+                currentActivity = (MainActivity)activity;
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity)
+            {
+                //log("ActivityLifecycle of onActivityPaused for" + activity.getClass().getSimpleName());
+                currentActivity = null;
+            }
+
+            @Override public void onActivityStarted(Activity activity) { }
+            @Override public void onActivityStopped(Activity activity) { }
+            @Override public void onActivitySaveInstanceState(Activity activity, Bundle outState) { }
+            @Override public void onActivityDestroyed(Activity activity) { }
+        };
+
+        app.registerActivityLifecycleCallbacks(lActivityLifecycleCallbacks);
+    }
 
 
-
-
+    public MainActivity getCurrentActivity()
+    {
+        return currentActivity;
+    }
 
 
 }
