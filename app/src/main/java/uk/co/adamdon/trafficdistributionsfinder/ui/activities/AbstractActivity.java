@@ -1,4 +1,4 @@
-package uk.co.adamdon.trafficdistributionsfinder.ui;
+package uk.co.adamdon.trafficdistributionsfinder.ui.activities;
 
 import android.os.Bundle;
 import android.widget.Toast;

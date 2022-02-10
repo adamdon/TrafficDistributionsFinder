@@ -5,13 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
 
 public class BlankFragment extends AbstractFragment
 {
-    public BlankFragment()
+    public BlankFragment(App app)
     {
-
+        super(app);
 
     }
 

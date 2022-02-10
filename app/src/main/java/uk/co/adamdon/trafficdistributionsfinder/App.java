@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-import uk.co.adamdon.trafficdistributionsfinder.ui.MainActivity;
+import uk.co.adamdon.trafficdistributionsfinder.ui.activities.MainActivity;
 import uk.co.adamdon.trafficdistributionsfinder.ui.UiController;
 
 
