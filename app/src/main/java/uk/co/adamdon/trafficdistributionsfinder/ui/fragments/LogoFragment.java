@@ -1,6 +1,7 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
+import uk.co.adamdon.trafficdistributionsfinder.databinding.LogoFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.MenuFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.MenuViewModel;
 
@@ -14,12 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 
-public class MenuFragment extends AbstractFragment
+public class LogoFragment extends AbstractFragment
 {
     private MenuViewModel menuViewModel;
 
 
-    public MenuFragment(App app)
+    public LogoFragment(App app)
     {
         super(app);
     }
@@ -29,18 +30,16 @@ public class MenuFragment extends AbstractFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
-        MenuFragmentBinding menuFragmentBinding;
-
-        menuViewModel = new ViewModelProvider(this).get( MenuViewModel.class);
+        LogoFragmentBinding logoFragmentBinding;
 
 
-        menuFragmentBinding = MenuFragmentBinding.inflate(layoutInflater,viewGroup,false);
-        menuFragmentBinding.currentDistributionsButton.setOnClickListener(view -> menuViewModel.currentDistributionsOnClick());
+
+        logoFragmentBinding = LogoFragmentBinding.inflate(layoutInflater,viewGroup,false);
 
 
 
 
-        return nestContentInTemplateFrameLayout(menuFragmentBinding.getRoot());
+        return nestContentInTemplateFrameLayout(logoFragmentBinding.getRoot());
     }
 
 

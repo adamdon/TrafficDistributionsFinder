@@ -17,7 +17,7 @@ import uk.co.adamdon.trafficdistributionsfinder.App;
 public abstract class AbstractActivity extends AppCompatActivity
 {
 
-    private App app;
+    protected App app;
 
 
     @Override

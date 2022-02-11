@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.ui.activities.AbstractActivity;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
+import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
 
 public class MainActivity extends AbstractActivity
@@ -38,8 +39,8 @@ public class MainActivity extends AbstractActivity
         rootLinearLayout.addView(fragmentsLinearLayout);
 
 
-        getApp().getUiController().replaceFragmentByID( 0, new MenuFragment(getApp()));
-        getApp().getUiController().replaceFragmentByID( 1, new BlankFragment(getApp()));
+        app.getUiController().replaceFragmentByID( 0, new LogoFragment(getApp()));
+        app.getUiController().replaceFragmentByID( 1, new MenuFragment(getApp()));
 
 
 
