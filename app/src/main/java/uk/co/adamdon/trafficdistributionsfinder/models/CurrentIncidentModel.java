@@ -2,7 +2,7 @@ package uk.co.adamdon.trafficdistributionsfinder.models;
 
 import java.time.LocalDate;
 
-public class CurrentIncidentsModel
+public class CurrentIncidentModel
 {
     private String titleString;
     private String descriptionString;
@@ -11,7 +11,7 @@ public class CurrentIncidentsModel
     private String commentsString;
     private LocalDate punDateLocalDate;
 
-    public CurrentIncidentsModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, LocalDate punDateLocalDate)
+    public CurrentIncidentModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, LocalDate punDateLocalDate)
     {
         this.titleString = titleString;
         this.descriptionString = descriptionString;
@@ -19,6 +19,11 @@ public class CurrentIncidentsModel
         this.authorString = authorString;
         this.commentsString = commentsString;
         this.punDateLocalDate = punDateLocalDate;
+    }
+
+    public CurrentIncidentModel()
+    {
+
     }
 
     public String getTitleString()
@@ -49,6 +54,49 @@ public class CurrentIncidentsModel
     public LocalDate getPunDateLocalDate()
     {
         return punDateLocalDate;
+    }
+
+    public void setTitleString(String titleString)
+    {
+        this.titleString = titleString;
+    }
+
+    public void setDescriptionString(String descriptionString)
+    {
+        this.descriptionString = descriptionString;
+    }
+
+    public void setLinkString(String linkString)
+    {
+        this.linkString = linkString;
+    }
+
+    public void setAuthorString(String authorString)
+    {
+        this.authorString = authorString;
+    }
+
+    public void setCommentsString(String commentsString)
+    {
+        this.commentsString = commentsString;
+    }
+
+    public void setPunDateLocalDate(LocalDate punDateLocalDate)
+    {
+        this.punDateLocalDate = punDateLocalDate;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "CurrentIncidentModel{" +
+                "titleString='" + titleString + '\'' +
+                ", descriptionString='" + descriptionString + '\'' +
+                ", linkString='" + linkString + '\'' +
+                ", authorString='" + authorString + '\'' +
+                ", commentsString='" + commentsString + '\'' +
+                ", punDateLocalDate=" + punDateLocalDate +
+                '}';
     }
 
 

@@ -10,8 +10,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
+import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
+import uk.co.adamdon.trafficdistributionsfinder.parsers.XmlToCurrentInstancesList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
@@ -49,6 +52,11 @@ public class CurrentViewModel extends AbstractViewModel
         Log.d("TAG", "setValue: test value update in viewmodel ");
         Log.d("TAG",  test.toString());
         Log.d("TAG",  String.valueOf(test.hashCode()));
+
+        ArrayList<CurrentIncidentModel> currentIncidentList;
+        currentIncidentList = XmlToCurrentInstancesList.getInstance().parse(test.toString());
+        Log.d("TAG List",  currentIncidentList.toString());
+
     }
 
 
