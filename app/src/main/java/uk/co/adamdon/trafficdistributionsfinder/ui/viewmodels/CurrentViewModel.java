@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
@@ -34,8 +35,7 @@ public class CurrentViewModel extends AbstractViewModel
 
 
 
-        String urlString = "https://trafficscotland.org/rss/feeds/currentincidents.aspx";
-        DataFetcher.getInstance().get(urlString, (results) -> setValue(results));
+        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setValue(results));
 
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
         app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
@@ -45,7 +45,7 @@ public class CurrentViewModel extends AbstractViewModel
 
     public void setValue(Object test)
     {
-        Log.d("TAG", "DID THIS FUCKING WORK OR WHAT? " + Thread.currentThread().getName());
+        Log.d("TAG", "DID THIS WORK" + Thread.currentThread().getName());
         Log.d("TAG", "setValue: test value update in viewmodel ");
         Log.d("TAG",  test.toString());
         Log.d("TAG",  String.valueOf(test.hashCode()));
