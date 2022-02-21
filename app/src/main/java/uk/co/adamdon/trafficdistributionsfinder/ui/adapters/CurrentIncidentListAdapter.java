@@ -39,12 +39,6 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
     }
 
 
-//    @NonNull
-//    @Override
-//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
-//    {
-//        return super.getView(position, convertView, parent);
-//    }
 
     @NonNull
     @Override
@@ -58,7 +52,7 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
 
         Log.d("TAG", "getView: running here?");
         currentIncident = currentIncidentList.get(position);
-        currentViewModel = new ViewModelProvider((FragmentActivity)context).get( CurrentViewModel.class);
+//        currentViewModel = new ViewModelProvider((FragmentActivity)context).get( CurrentViewModel.class); //don't use this unless it's really needed
 
 
         if(convertView == null)
@@ -74,15 +68,12 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
         currentListItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
 
 
-
-
 //        currentListItemViewBinding.getRoot().setOnClickListener( pView ->
 //        {
 //            currentListItemViewBinding.getRoot().setClickable(false);
 //            currentListItemViewBinding.getRoot().setAlpha(0.5f);
 ////            currentViewModel.onClickGoToRecentFromID( currentIncident.getId().intValue());
 //        } );
-
 
         return convertView;
     }

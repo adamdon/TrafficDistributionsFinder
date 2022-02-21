@@ -45,19 +45,8 @@ public class CurrentFragment extends AbstractFragment
 
         currentFragmentBinding = CurrentFragmentBinding.inflate(layoutInflater,viewGroup,false);
         currentFragmentBinding.backButton.setOnClickListener(view -> currentViewModel.backOnClick());
-//        currentFragmentBinding.currentListView.setAdapter(new CurrentIncidentListAdapter(getContext(), R.layout.current_list_item_view, currentViewModel.getCurrentIncidentListLiveData().getValue()));
-        currentFragmentBinding.currentListView.setAdapter(new CurrentIncidentListAdapter(getContext(), R.layout.current_list_item_view, getTestList()));
 
-        currentViewModel.getCurrentIncidentListLiveData().observe(getViewLifecycleOwner(),currentIncidentList ->  ((ArrayAdapter)currentFragmentBinding.currentListView.getAdapter()).notifyDataSetChanged());
-//        currentViewModel.getCurrentIncidentListLiveData().observe(getViewLifecycleOwner(),currentIncidentList -> Log.d("TAG", "onCreateView: data changed" + currentIncidentList.toString()));
-//        currentViewModel.getCurrentIncidentListLiveData().observe(getViewLifecycleOwner(),currentIncidentList -> currentFragmentBinding.currentListView.setAdapter(new CurrentIncidentListAdapter(getContext(), R.layout.current_list_item_view, currentViewModel.getCurrentIncidentListLiveData().getValue())));
-
-
-
-//        currentViewModel.getCurrentIncidentListLiveData().observe();
-
-
-
+        currentViewModel.getCurrentIncidentListLiveData().observe(getViewLifecycleOwner(),currentIncidentList -> currentFragmentBinding.currentListView.setAdapter(new CurrentIncidentListAdapter(getContext(), R.layout.current_list_item_view, currentViewModel.getCurrentIncidentListLiveData().getValue())));
 
 
         return nestContentInTemplateFrameLayout(currentFragmentBinding.getRoot());
