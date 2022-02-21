@@ -44,6 +44,13 @@ public class CurrentViewModel extends AbstractViewModel
 
 
 
+    public void onCurrentListViewItemClick(int positionInt)
+    {
+        Log.d("OnCurrentListViewItemClick", ": item on click:" + positionInt);
+    }
+
+
+
     public void backOnClick()
     {
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
