@@ -60,6 +60,7 @@ public class CurrentViewModel extends AbstractViewModel
     {
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
         app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
+        app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
     }
 
 

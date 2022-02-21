@@ -3,7 +3,7 @@ package uk.co.adamdon.trafficdistributionsfinder.models;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class CurrentIncidentModel
+public class CurrentIncidentModel extends AbstractModel
 {
     private String titleString;
     private String descriptionString;
@@ -14,6 +14,7 @@ public class CurrentIncidentModel
 
     public CurrentIncidentModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
     {
+        super();
         this.titleString = titleString;
         this.descriptionString = descriptionString;
         this.linkString = linkString;
@@ -24,8 +25,13 @@ public class CurrentIncidentModel
 
     public CurrentIncidentModel()
     {
-
+        super();
     }
+
+
+
+
+
 
     public String getTitleString()
     {
