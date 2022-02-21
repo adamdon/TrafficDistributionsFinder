@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.R;
@@ -66,6 +67,7 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
         }
 
         currentListItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
+        currentListItemViewBinding.currentDateTextView.setText(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(currentIncident.getPunDate()));
 
 
 //        currentListItemViewBinding.getRoot().setOnClickListener( pView ->

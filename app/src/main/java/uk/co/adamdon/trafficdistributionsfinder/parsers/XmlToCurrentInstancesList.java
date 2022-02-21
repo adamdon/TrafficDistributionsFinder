@@ -8,9 +8,14 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
@@ -102,13 +107,28 @@ public class XmlToCurrentInstancesList
                         currentIncident.setLinkString(text);
 //                        Log.d("parser", "Link found: " + text);
                     }
-//                    else if (tagName.equalsIgnoreCase("pubDate"))
-//                    {
-//                        String text = xmlPullParser.nextText();
-////                        LocalDate localDate = LocalDate.parse(text);
-//                        currentIncident.setPunDateLocalDate();
-//                        Log.d("parser", "Date found: " + text);
-//                    }
+                    else if (tagName.equalsIgnoreCase("pubDate"))
+                    {
+                        String text = xmlPullParser.nextText();
+
+                        try
+                        {
+                            String formatString = "EEE, d MMM yyyy HH:mm:ss z";
+                            SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(formatString, Locale.UK);
+                            Date parsedDate = dateTimeFormatter.parse(text);
+
+                            currentIncident.setPunDate(parsedDate);
+                        }
+                        catch (Exception exception)
+                        {
+                            Log.e("parser", "Error, Date found: " + text);
+                            exception.printStackTrace();
+                        }
+
+
+
+                        Log.d("parser", "Date found: " + text);
+                    }
                 }
             }
         } catch(XmlPullParserException | IOException exception)

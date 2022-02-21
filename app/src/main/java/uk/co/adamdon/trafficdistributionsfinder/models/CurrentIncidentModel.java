@@ -1,6 +1,7 @@
 package uk.co.adamdon.trafficdistributionsfinder.models;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class CurrentIncidentModel
 {
@@ -9,16 +10,16 @@ public class CurrentIncidentModel
     private String linkString;
     private String authorString;
     private String commentsString;
-    private LocalDate punDateLocalDate;
+    private Date punDate;
 
-    public CurrentIncidentModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, LocalDate punDateLocalDate)
+    public CurrentIncidentModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
     {
         this.titleString = titleString;
         this.descriptionString = descriptionString;
         this.linkString = linkString;
         this.authorString = authorString;
         this.commentsString = commentsString;
-        this.punDateLocalDate = punDateLocalDate;
+        this.punDate = punDate;
     }
 
     public CurrentIncidentModel()
@@ -51,9 +52,9 @@ public class CurrentIncidentModel
         return commentsString;
     }
 
-    public LocalDate getPunDateLocalDate()
+    public Date getPunDate()
     {
-        return punDateLocalDate;
+        return punDate;
     }
 
     public void setTitleString(String titleString)
@@ -81,9 +82,9 @@ public class CurrentIncidentModel
         this.commentsString = commentsString;
     }
 
-    public void setPunDateLocalDate(LocalDate punDateLocalDate)
+    public void setPunDate(Date punDate)
     {
-        this.punDateLocalDate = punDateLocalDate;
+        this.punDate = punDate;
     }
 
     @Override
@@ -95,7 +96,7 @@ public class CurrentIncidentModel
                 ", linkString='" + linkString + '\'' +
                 ", authorString='" + authorString + '\'' +
                 ", commentsString='" + commentsString + '\'' +
-                ", punDateLocalDate=" + punDateLocalDate +
+                ", punDate=" + punDate +
                 '}';
     }
 
