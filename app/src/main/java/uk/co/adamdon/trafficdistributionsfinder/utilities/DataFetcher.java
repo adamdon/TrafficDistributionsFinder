@@ -116,6 +116,7 @@ public class DataFetcher
         catch (Exception e)
         {
             Log.e("Error", e.getMessage());
+            e.printStackTrace();
         }
 
         return fullResultString.toString();

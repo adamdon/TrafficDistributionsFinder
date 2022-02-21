@@ -33,22 +33,17 @@ public class CurrentViewModel extends AbstractViewModel
     {
         super(application);
 
+//        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setValue(results));
     }
 
 
     public void backOnClick()
     {
-
-
-
-        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setValue(results));
-
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
         app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
     }
 
-
-    //TODO add ListView UI elements
+    //TODO clean UI element for list items
     //TODO create listView array Adapter
     //TODO refactor setValue out
     public void setValue(Object test) //refactor this out
@@ -71,6 +66,7 @@ public class CurrentViewModel extends AbstractViewModel
         if (currentIncidentListLiveData == null)
         {
             currentIncidentListLiveData = new MutableLiveData<>();
+            DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setValue(results));
         }
         return currentIncidentListLiveData;
     }

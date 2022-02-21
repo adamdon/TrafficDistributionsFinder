@@ -79,7 +79,7 @@ public class XmlToCurrentInstancesList
                 if (tagName.equalsIgnoreCase ("item"))
                 {
                     currentIncident = new CurrentIncidentModel();
-                    Log.d("XMLParser", "\t\tItem found");
+//                    Log.d("XMLParser", "\t\tItem found");
                 }
 
                 if (currentIncident != null)
@@ -88,19 +88,19 @@ public class XmlToCurrentInstancesList
                     {
                         String text = xmlPullParser.nextText();
                         currentIncident.setTitleString(text);
-                        Log.d("parser", "Title found: " + text);
+//                        Log.d("parser", "Title found: " + text);
                     }
                     else if (tagName.equalsIgnoreCase("description"))
                     {
                         String text = xmlPullParser.nextText();
                         currentIncident.setDescriptionString(text);
-                        Log.d("parser", "Description found: " + text);
+//                        Log.d("parser", "Description found: " + text);
                     }
                     else if (tagName.equalsIgnoreCase("link"))
                     {
                         String text = xmlPullParser.nextText();
                         currentIncident.setLinkString(text);
-                        Log.d("parser", "Link found: " + text);
+//                        Log.d("parser", "Link found: " + text);
                     }
 //                    else if (tagName.equalsIgnoreCase("pubDate"))
 //                    {
