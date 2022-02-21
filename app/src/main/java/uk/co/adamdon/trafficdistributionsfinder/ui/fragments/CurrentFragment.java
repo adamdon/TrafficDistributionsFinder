@@ -3,19 +3,15 @@ package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.databinding.MenuFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.CurrentIncidentListAdapter;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.MenuViewModel;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,7 +42,7 @@ public class CurrentFragment extends AbstractFragment
 
         currentFragmentBinding = CurrentFragmentBinding.inflate(layoutInflater,viewGroup,false);
         currentFragmentBinding.backButton.setOnClickListener(view -> currentViewModel.backOnClick());
-        currentFragmentBinding.currentListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> currentViewModel.onCurrentListViewItemClick(position));
+        currentFragmentBinding.currentListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> currentViewModel.onItemClickCurrentListView(position));
 
 
 

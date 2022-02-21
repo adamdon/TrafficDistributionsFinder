@@ -13,6 +13,7 @@ import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
 import uk.co.adamdon.trafficdistributionsfinder.parsers.XmlToCurrentInstancesList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
+import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 
@@ -44,9 +45,13 @@ public class CurrentViewModel extends AbstractViewModel
 
 
 
-    public void onCurrentListViewItemClick(int positionInt)
+    public void onItemClickCurrentListView(int positionInt)
     {
-        Log.d("OnCurrentListViewItemClick", ": item on click:" + positionInt);
+        CurrentIncidentModel selectedCurrentIncident;
+
+        selectedCurrentIncident = getCurrentIncidentListLiveData().getValue().get(positionInt);
+
+        app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(app, selectedCurrentIncident) );
     }
 
 
