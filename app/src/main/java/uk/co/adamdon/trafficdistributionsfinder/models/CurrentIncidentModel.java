@@ -3,7 +3,7 @@ package uk.co.adamdon.trafficdistributionsfinder.models;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class CurrentIncidentModel extends AbstractModel
+public class CurrentIncidentModel extends AbstractModel implements ItemInterface
 {
     private String titleString;
     private String descriptionString;
