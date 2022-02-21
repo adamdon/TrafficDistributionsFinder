@@ -50,43 +50,41 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
-        Log.d("TAG", "getView: running here?");
-        View returnCurrentView = convertView;
-
-        if(returnCurrentView == null)
-        {
-            final LayoutInflater lLayoutInflater = LayoutInflater.from( context);
-            returnCurrentView = lLayoutInflater.inflate(layoutResourceIdInt, null, false);
-        }
-
-
-
-
-        CurrentIncidentModel currentIncident;
         CurrentListItemViewBinding currentListItemViewBinding;
 
+        CurrentIncidentModel currentIncident;
+        CurrentViewModel currentViewModel;
 
+
+        Log.d("TAG", "getView: running here?");
         currentIncident = currentIncidentList.get(position);
-        currentListItemViewBinding = CurrentListItemViewBinding.inflate(LayoutInflater.from(context),parent,false);
+        currentViewModel = new ViewModelProvider((FragmentActivity)context).get( CurrentViewModel.class);
+
+
+        if(convertView == null)
+        {
+            currentListItemViewBinding = CurrentListItemViewBinding.inflate(LayoutInflater.from(context), parent,false);
+            convertView = currentListItemViewBinding.getRoot();
+        }
+        else //recycling view if it is already on screen for better performance
+        {
+            currentListItemViewBinding = CurrentListItemViewBinding.bind(convertView);
+        }
 
         currentListItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
 
 
-        CurrentViewModel currentViewModel = new ViewModelProvider((FragmentActivity)context).get( CurrentViewModel.class);
 
 
-        final View lReturnCurrentView2 = returnCurrentView;
-        returnCurrentView.setOnClickListener( pView ->
-        {
-            lReturnCurrentView2.setClickable(false);
-            lReturnCurrentView2.setAlpha(0.5f);
-//            currentViewModel.onClickGoToRecentFromID( currentIncident.getId().intValue());
-
-        } );
+//        currentListItemViewBinding.getRoot().setOnClickListener( pView ->
+//        {
+//            currentListItemViewBinding.getRoot().setClickable(false);
+//            currentListItemViewBinding.getRoot().setAlpha(0.5f);
+////            currentViewModel.onClickGoToRecentFromID( currentIncident.getId().intValue());
+//        } );
 
 
-//        return lReturnCurrentView2;
-        return currentListItemViewBinding.getRoot();
+        return convertView;
     }
 
 
