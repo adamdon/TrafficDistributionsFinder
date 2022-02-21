@@ -67,8 +67,8 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
         }
 
         currentListItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
-        currentListItemViewBinding.currentDateTextView.setText(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(currentIncident.getPunDate()));
-
+        currentListItemViewBinding.currentDateTextView.setText(new SimpleDateFormat("HH:mm dd-MM-yyyy").format(currentIncident.getPunDate()));
+        currentListItemViewBinding.currentDescriptionTextView.setText(currentIncident.getDescriptionPreViewString(35));
 
 //        currentListItemViewBinding.getRoot().setOnClickListener( pView ->
 //        {

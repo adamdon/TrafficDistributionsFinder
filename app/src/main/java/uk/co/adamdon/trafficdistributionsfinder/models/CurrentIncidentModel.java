@@ -37,6 +37,24 @@ public class CurrentIncidentModel
         return descriptionString;
     }
 
+    public String getDescriptionPreViewString(int numberOfCharsInt)
+    {
+        String descriptionPreviewString = "";
+
+        if(descriptionString.length() <= numberOfCharsInt)
+        {
+            descriptionPreviewString = descriptionString;
+        }
+        else
+        {
+            descriptionPreviewString = descriptionString.substring(0, numberOfCharsInt);
+        }
+
+        descriptionPreviewString += "...";
+
+        return descriptionPreviewString;
+    }
+
     public String getLinkString()
     {
         return linkString;
