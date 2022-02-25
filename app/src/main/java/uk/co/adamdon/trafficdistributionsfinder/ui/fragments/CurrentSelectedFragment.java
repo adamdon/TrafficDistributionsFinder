@@ -2,6 +2,7 @@ package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewBinding;
+import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentSelectedFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
 
 import android.os.Bundle;
@@ -34,20 +35,20 @@ public class CurrentSelectedFragment extends AbstractFragment
 //        Log.d("TAG", "onCreateView: " + currentIncident.getGeoPointString());
 //        Log.d("TAG", "onCreateView: " + currentIncident.getDescriptionString());
 //        Log.d("TAG", "onCreateView: " + currentIncident.getLinkString());
-        CurrentListItemViewBinding currentListItemViewBinding;
+        CurrentSelectedFragmentBinding currentSelectedFragmentBinding;
 
 
-        currentListItemViewBinding = CurrentListItemViewBinding.inflate(layoutInflater,viewGroup,false);
+        currentSelectedFragmentBinding = CurrentSelectedFragmentBinding.inflate(layoutInflater,viewGroup,false);
 
 //        currentListItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
-        currentListItemViewBinding.currentTitleTextView.setText("");
+//        currentListItemViewBinding.currentTitleTextView.setText("");
 //        currentListItemViewBinding.currentDateTextView.setText(new SimpleDateFormat("HH:mm dd-MM-yyyy").format(currentIncident.getPunDate()));
-        currentListItemViewBinding.currentDateTextView.setText("");
-        currentListItemViewBinding.currentDescriptionTextView.setText(currentIncident.getDescriptionString());
+//        currentListItemViewBinding.currentDateTextView.setText("");
+        currentSelectedFragmentBinding.currentDescriptionTextView.setText(currentIncident.getDescriptionString());
 
 
 
-        return nestContentInTemplateFrameLayout(currentListItemViewBinding.getRoot());
+        return nestContentInTemplateFrameLayout(currentSelectedFragmentBinding.getRoot());
     }
 
 
