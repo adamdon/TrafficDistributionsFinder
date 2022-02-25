@@ -10,6 +10,7 @@ public class CurrentIncidentModel extends AbstractModel implements ItemInterface
     private String linkString;
     private String authorString;
     private String commentsString;
+    private String geoPointString;
     private Date punDate;
 
     public CurrentIncidentModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
@@ -81,6 +82,11 @@ public class CurrentIncidentModel extends AbstractModel implements ItemInterface
         return punDate;
     }
 
+    public String getGeoPointString()
+    {
+        return geoPointString;
+    }
+
     public void setTitleString(String titleString)
     {
         this.titleString = titleString;
@@ -111,6 +117,11 @@ public class CurrentIncidentModel extends AbstractModel implements ItemInterface
         this.punDate = punDate;
     }
 
+    public void setGeoPointString(String geoPointString)
+    {
+        this.geoPointString = geoPointString;
+    }
+
     @Override
     public String toString()
     {
@@ -120,12 +131,12 @@ public class CurrentIncidentModel extends AbstractModel implements ItemInterface
                 ", linkString='" + linkString + '\'' +
                 ", authorString='" + authorString + '\'' +
                 ", commentsString='" + commentsString + '\'' +
+                ", geoPointString='" + geoPointString + '\'' +
                 ", punDate=" + punDate +
                 '}';
     }
 
-
-    //    <title>M8 Jct 15 - Jct 18 - Planned Roadworks</title>
+//    <title>M8 Jct 15 - Jct 18 - Planned Roadworks</title>
 //    <description>The M8 both Eastbound and Westbound between Junctions 15 and Junction 18 is currently restricted due to essential bridge repairs.  Motorists are advised to expect delays in the area.</description>
 //      <link>http://tscot.org/01a13134</link>
 //      <georss:point>55.8692771239109 -4.24135563418866</georss:point>

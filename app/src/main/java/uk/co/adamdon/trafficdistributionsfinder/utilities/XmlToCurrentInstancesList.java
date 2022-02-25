@@ -1,4 +1,4 @@
-package uk.co.adamdon.trafficdistributionsfinder.parsers;
+package uk.co.adamdon.trafficdistributionsfinder.utilities;
 
 import android.util.Log;
 
@@ -9,14 +9,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
 
@@ -56,12 +51,13 @@ public class XmlToCurrentInstancesList
 
 
             xmlPullParserFactory = XmlPullParserFactory.newInstance();
-            xmlPullParserFactory.setNamespaceAware(true);
+            xmlPullParserFactory.setNamespaceAware(false);
 
             xmlPullParser = xmlPullParserFactory.newPullParser();
 
-            xmlDataCleanString = xmlDataString.replace("null", "");
-            xmlPullParser.setInput(new StringReader(xmlDataCleanString));
+//            xmlDataCleanString = xmlDataString.replace("null", "");
+//            xmlDataCleanString = xmlDataString.replace("georss:point", "georsspoint");
+            xmlPullParser.setInput(new StringReader(xmlDataString));
             int eventType;
 
             CurrentIncidentModel currentIncident = null;
@@ -69,6 +65,7 @@ public class XmlToCurrentInstancesList
             while ((eventType = xmlPullParser.next()) != XmlPullParser.END_DOCUMENT)
             {
                 String tagName = xmlPullParser.getName();
+//                Log.d("TAG", "parse tag name: " + tagName);
 
                 if (eventType == XmlPullParser.END_TAG && tagName.equalsIgnoreCase("item"))
                 {
@@ -107,6 +104,13 @@ public class XmlToCurrentInstancesList
                         currentIncident.setLinkString(text);
 //                        Log.d("parser", "Link found: " + text);
                     }
+                    else if (tagName.equalsIgnoreCase("georss:point"))
+                    {
+                        String text = xmlPullParser.nextText();
+                        currentIncident.setGeoPointString(text);
+//                        Log.d("parser", "GeoPoint Found: " + text);
+                    }
+
                     else if (tagName.equalsIgnoreCase("pubDate"))
                     {
                         String text = xmlPullParser.nextText();
@@ -114,8 +118,8 @@ public class XmlToCurrentInstancesList
                         try
                         {
                             String formatString = "EEE, d MMM yyyy HH:mm:ss z";
-                            SimpleDateFormat dateTimeFormatter = new SimpleDateFormat(formatString, Locale.UK);
-                            Date parsedDate = dateTimeFormatter.parse(text);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatString, Locale.UK);
+                            Date parsedDate = simpleDateFormat.parse(text);
 
                             currentIncident.setPunDate(parsedDate);
                         }
@@ -124,10 +128,7 @@ public class XmlToCurrentInstancesList
                             Log.e("parser", "Error, Date found: " + text);
                             exception.printStackTrace();
                         }
-
-
-
-                        Log.d("parser", "Date found: " + text);
+//                        Log.d("parser", "Date found: " + text);
                     }
                 }
             }

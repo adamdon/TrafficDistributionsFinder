@@ -11,7 +11,7 @@ import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
-import uk.co.adamdon.trafficdistributionsfinder.parsers.XmlToCurrentInstancesList;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;

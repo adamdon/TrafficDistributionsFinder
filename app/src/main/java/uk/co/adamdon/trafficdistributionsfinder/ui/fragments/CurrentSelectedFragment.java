@@ -5,6 +5,7 @@ import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewB
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,9 @@ public class CurrentSelectedFragment extends AbstractFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
+//        Log.d("TAG", "onCreateView: " + currentIncident.getGeoPointString());
+//        Log.d("TAG", "onCreateView: " + currentIncident.getDescriptionString());
+//        Log.d("TAG", "onCreateView: " + currentIncident.getLinkString());
         CurrentListItemViewBinding currentListItemViewBinding;
 
 

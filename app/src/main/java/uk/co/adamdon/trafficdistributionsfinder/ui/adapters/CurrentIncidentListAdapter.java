@@ -51,7 +51,7 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
         CurrentViewModel currentViewModel;
 
 
-        Log.d("TAG", "getView: running here?");
+//        Log.d("TAG", "getView: running here?");
         currentIncident = currentIncidentList.get(position);
 //        currentViewModel = new ViewModelProvider((FragmentActivity)context).get( CurrentViewModel.class); //don't use this unless it's really needed
 
