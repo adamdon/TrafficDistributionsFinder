@@ -38,21 +38,36 @@
             app:autoSizeMinTextSize="10sp"
             app:autoSizeMaxTextSize="14sp"
             app:autoSizeStepGranularity="1sp"
-            android:text="Select for details"/>
+            android:text="Select date for info"/>
     </LinearLayout>
 
 
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_margin="0dp"
         android:orientation="vertical" >
 
 
         <DatePicker
             android:id="@+id/FutureDatePicker"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="200dp"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:datePickerMode="spinner"
+            android:calendarViewShown="false"
+            />
+
+
+        <Button
+            android:id="@+id/selectButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:iconGravity="start"
+            android:text="Select Date"/>
 
     </LinearLayout>
 
@@ -64,7 +79,7 @@
 
 
 
-    <com.google.android.material.button.MaterialButton
+    <Button
         android:id="@+id/backButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

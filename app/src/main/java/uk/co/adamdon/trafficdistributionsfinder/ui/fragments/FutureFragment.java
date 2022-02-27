@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Date;
+
 
 public class FutureFragment extends AbstractFragment
 {
@@ -36,6 +38,7 @@ public class FutureFragment extends AbstractFragment
 
         futureFragmentBinding = FutureFragmentBinding.inflate(layoutInflater,viewGroup,false);
         futureFragmentBinding.backButton.setOnClickListener(view -> requireActivity().onBackPressed());
+        futureFragmentBinding.FutureDatePicker.setMinDate(new Date().getTime());
 //        futureFragmentBinding.currentListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> currentViewModel.onItemClickCurrentListView(position));
 
 
