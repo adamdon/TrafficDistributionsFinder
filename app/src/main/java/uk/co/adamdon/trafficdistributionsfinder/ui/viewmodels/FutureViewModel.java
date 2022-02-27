@@ -7,28 +7,29 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
-import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
-import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
-import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 
 public class FutureViewModel extends AbstractViewModel
 {
     private MutableLiveData<List<CurrentIncidentModel>> currentIncidentListLiveData;
+    private MutableLiveData<Date> selectedDateLiveData;
+    private Date selectedDate;
 
 
 
     public FutureViewModel( @NonNull Application application )
     {
         super(application);
+        Log.d("FutureViewModel", "FutureViewModel: crearted");
 
-        Log.d("CurrentViewModel", "CurrentViewModel: crearted");
-        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setResultsForCurrentIncidentList(results));
+        setSelectedDate(new Date(new Date().getTime() + 86400000)); //default date set to tomorrow
+
+//        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setResultsForCurrentIncidentList(results));
     }
 
 
@@ -56,15 +57,6 @@ public class FutureViewModel extends AbstractViewModel
 
 
 
-    public void backOnClick()
-    {
-        app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
-        app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
-    }
-
-
-
     public MutableLiveData<List<CurrentIncidentModel>> getCurrentIncidentListLiveData()
     {
         if (currentIncidentListLiveData == null)
@@ -83,4 +75,28 @@ public class FutureViewModel extends AbstractViewModel
         currentIncidentListLiveData.setValue(currentIncidentList);
     }
 
+
+
+
+
+
+
+    public MutableLiveData<Date> getSelectedDateLiveData()
+    {
+        if (selectedDateLiveData == null)
+        {
+            selectedDateLiveData = new MutableLiveData<>();
+        }
+        return selectedDateLiveData;
+    }
+
+    public void setSelectedDate(Date selectedDate)
+    {
+        if (selectedDateLiveData == null)
+        {
+            selectedDateLiveData = new MutableLiveData<>();
+        }
+//        Log.d("selectedDate", "selectedDate: " + selectedDate.toString());
+        this.selectedDateLiveData.setValue(selectedDate);
+    }
 }
