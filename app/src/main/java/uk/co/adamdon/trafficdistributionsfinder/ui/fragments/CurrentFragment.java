@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class CurrentFragment extends AbstractFragment
@@ -41,7 +42,8 @@ public class CurrentFragment extends AbstractFragment
         currentViewModel = new ViewModelProvider(this).get( CurrentViewModel.class);
 
         currentFragmentBinding = CurrentFragmentBinding.inflate(layoutInflater,viewGroup,false);
-        currentFragmentBinding.backButton.setOnClickListener(view -> currentViewModel.backOnClick());
+//        currentFragmentBinding.backButton.setOnClickListener(view -> currentViewModel.backOnClick());
+        currentFragmentBinding.backButton.setOnClickListener(view -> requireActivity().onBackPressed());
         currentFragmentBinding.currentListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> currentViewModel.onItemClickCurrentListView(position));
 
 

@@ -43,8 +43,16 @@ public class MainActivity extends AbstractActivity
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(getApp()));
 
 
+        showToast("Traficc distrutions finder loaded");
+    }
 
 
-        showToast("testthingString");
+    @Override
+    public void onBackPressed()
+    {
+        app.getUiController().replaceFragmentByID( 0, new LogoFragment(app) );
+        app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
+        app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
+        app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
     }
 }

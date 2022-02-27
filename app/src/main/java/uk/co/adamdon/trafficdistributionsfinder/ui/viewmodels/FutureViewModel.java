@@ -11,20 +11,19 @@ import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 
-public class CurrentViewModel extends AbstractViewModel
+public class FutureViewModel extends AbstractViewModel
 {
     private MutableLiveData<List<CurrentIncidentModel>> currentIncidentListLiveData;
 
 
 
-    public CurrentViewModel( @NonNull Application application )
+    public FutureViewModel( @NonNull Application application )
     {
         super(application);
 
@@ -59,7 +58,6 @@ public class CurrentViewModel extends AbstractViewModel
 
     public void backOnClick()
     {
-        app.getUiController().replaceFragmentByID( 0, new LogoFragment(app) );
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
         app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
         app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
