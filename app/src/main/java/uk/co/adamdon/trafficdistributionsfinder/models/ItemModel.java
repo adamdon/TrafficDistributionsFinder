@@ -12,6 +12,8 @@ public class ItemModel extends AbstractModel implements ItemInterface
     private String commentsString;
     private String geoPointString;
     private Date punDate;
+    private Date startDate;
+    private Date endDate;
 
     public ItemModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
     {
@@ -87,6 +89,16 @@ public class ItemModel extends AbstractModel implements ItemInterface
         return geoPointString;
     }
 
+    public Date getStartDate()
+    {
+        return startDate;
+    }
+
+    public Date getEndDate()
+    {
+        return endDate;
+    }
+
     public void setTitleString(String titleString)
     {
         this.titleString = titleString;
@@ -122,10 +134,20 @@ public class ItemModel extends AbstractModel implements ItemInterface
         this.geoPointString = geoPointString;
     }
 
+    public void setStartDate(Date startDate)
+    {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate)
+    {
+        this.endDate = endDate;
+    }
+
     @Override
     public String toString()
     {
-        return "CurrentIncidentModel{" +
+        return "ItemModel{" +
                 "titleString='" + titleString + '\'' +
                 ", descriptionString='" + descriptionString + '\'' +
                 ", linkString='" + linkString + '\'' +
@@ -133,10 +155,13 @@ public class ItemModel extends AbstractModel implements ItemInterface
                 ", commentsString='" + commentsString + '\'' +
                 ", geoPointString='" + geoPointString + '\'' +
                 ", punDate=" + punDate +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 '}';
     }
 
-//    <title>M8 Jct 15 - Jct 18 - Planned Roadworks</title>
+
+    //    <title>M8 Jct 15 - Jct 18 - Planned Roadworks</title>
 //    <description>The M8 both Eastbound and Westbound between Junctions 15 and Junction 18 is currently restricted due to essential bridge repairs.  Motorists are advised to expect delays in the area.</description>
 //      <link>http://tscot.org/01a13134</link>
 //      <georss:point>55.8692771239109 -4.24135563418866</georss:point>
