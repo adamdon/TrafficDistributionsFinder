@@ -15,6 +15,8 @@ import java.util.TimeZone;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
+import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureFragment;
+import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureResultsFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
@@ -73,6 +75,9 @@ public class FutureViewModel extends AbstractViewModel
                 filteredItemList.add(currentItem);
             }
         }
+
+        app.getUiController().replaceFragmentByID( 2, new FutureResultsFragment(app, filteredItemList) );
+
 //        Log.d("END", "currentItem: " + filteredItemList.size() );
     }
 
