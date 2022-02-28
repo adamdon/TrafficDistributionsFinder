@@ -24,9 +24,6 @@ import java.util.Date;
 
 public class FutureFragment extends AbstractFragment
 {
-    private FutureViewModel futureViewModel;
-
-
     public FutureFragment(App app)
     {
         super(app);
@@ -37,6 +34,7 @@ public class FutureFragment extends AbstractFragment
     @Override
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
+        FutureViewModel futureViewModel;
         FutureFragmentBinding futureFragmentBinding;
 
         futureViewModel = new ViewModelProvider(this).get(FutureViewModel.class);
@@ -47,10 +45,7 @@ public class FutureFragment extends AbstractFragment
                 DateHelper.getInstance().getYearInt(futureViewModel.getSelectedDateLiveData().getValue()),
                 DateHelper.getInstance().getMonthInt(futureViewModel.getSelectedDateLiveData().getValue()),
                 DateHelper.getInstance().getDayInt(futureViewModel.getSelectedDateLiveData().getValue()),
-                (DatePicker view, int year, int monthOfYear, int dayOfMonth) ->
-                {
-                    futureViewModel.setSelectedDate(DateHelper.getInstance().getDate(year, monthOfYear, dayOfMonth));
-                }
+                (DatePicker view, int year, int monthOfYear, int dayOfMonth) -> futureViewModel.setSelectedDate(DateHelper.getInstance().getDate(year, monthOfYear, dayOfMonth))
         );
         futureFragmentBinding.FutureDatePicker.setMinDate(new Date().getTime());
 
@@ -61,21 +56,6 @@ public class FutureFragment extends AbstractFragment
 
         return nestContentInTemplateFrameLayout(futureFragmentBinding.getRoot());
     }
-
-//    public void testSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-//    {
-//        Date testDate = DateHelper.getInstance().getDate(year, monthOfYear, dayOfMonth);
-//
-//        Log.d("TAG", "testSet: " + year + " " + monthOfYear + " " + dayOfMonth);
-//        Log.d("TAG", "testSet: " + testDate.toString());
-//    }
-
-
-
-
-
-
-
 
 
 }

@@ -114,11 +114,11 @@ public class XmlToCurrentInstancesList
                     else if (tagName.equalsIgnoreCase("pubDate"))
                     {
                         String text = xmlPullParser.nextText();
-
+//                        Log.d("parser", "Date found: " + text);
                         try
                         {
                             String formatString = "EEE, d MMM yyyy HH:mm:ss z";
-                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatString, Locale.UK);
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatString, Locale.ENGLISH);
                             Date parsedDate = simpleDateFormat.parse(text);
 
                             currentIncident.setPunDate(parsedDate);
@@ -128,7 +128,6 @@ public class XmlToCurrentInstancesList
                             Log.e("parser", "Error, Date found: " + text);
                             exception.printStackTrace();
                         }
-//                        Log.d("parser", "Date found: " + text);
                     }
                 }
             }

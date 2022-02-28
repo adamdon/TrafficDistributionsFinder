@@ -9,10 +9,12 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
-import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
 
 public class FutureViewModel extends AbstractViewModel
 {
@@ -29,53 +31,87 @@ public class FutureViewModel extends AbstractViewModel
 
         setSelectedDate(new Date(new Date().getTime() + 86400000)); //default date set to tomorrow
 
-//        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setResultsForCurrentIncidentList(results));
+        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setResultsForItemList(results));
+        DataFetcher.getInstance().get(Config.ROADWORKS_URL, (results) -> setResultsForItemList(results));
+        DataFetcher.getInstance().get(Config.PLANNED_ROADWORKS_URL, (results) -> setResultsForItemList(results));
     }
 
 
 
-    public void setResultsForCurrentIncidentList(Object results) //refactor this out
+    public void setResultsForItemList(Object results) //refactor this out
     {
-        ArrayList<ItemModel> currentIncidentList;
+        ArrayList<ItemModel> itemList;
 
-        Log.d("CurrentViewModel", "setResultsForCurrentIncidentList on thread:" + Thread.currentThread().getName());
-        currentIncidentList = XmlToCurrentInstancesList.getInstance().parse(results.toString());
+        Log.d("FutureViewModel", "setResultsForItemList on thread:" + Thread.currentThread().getName());
+        itemList = XmlToCurrentInstancesList.getInstance().parse(results.toString());
 
-        setItemListLiveData(currentIncidentList);
+        setItemListLiveData(itemList);
+//        Log.d("FutureViewModel", "setResultsForItemList list size:" + getItemListLiveData().getValue().size());
     }
 
 
 
-    public void onItemClickCurrentListView(int positionInt)
-    {
-        ItemModel selectedCurrentIncident;
-
-        selectedCurrentIncident = getItemListLiveData().getValue().get(positionInt);
-
-        app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(app, selectedCurrentIncident) );
-    }
 
 
 
+
+
+
+
+
+
+
+
+
+
+//    public void onItemClickCurrentListView(int positionInt)
+//    {
+//        ItemModel selectedCurrentIncident;
+//
+//        selectedCurrentIncident = getItemListLiveData().getValue().get(positionInt);
+//
+//        app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(app, selectedCurrentIncident) );
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+    ///// GETTERS AND SETTERS
+    //
     public MutableLiveData<List<ItemModel>> getItemListLiveData()
     {
         if (itemListLiveData == null)
         {
             itemListLiveData = new MutableLiveData<>();
+            itemListLiveData.setValue(new ArrayList<ItemModel>());
         }
         return itemListLiveData;
     }
 
     public void setItemListLiveData(ArrayList<ItemModel> currentIncidentList)
     {
+        ArrayList<ItemModel> newItemList;
+
         if(itemListLiveData == null)
         {
             itemListLiveData = new MutableLiveData<>();
+            itemListLiveData.setValue(new ArrayList<ItemModel>());
         }
-        itemListLiveData.setValue(currentIncidentList);
+
+        newItemList = new ArrayList<>(Objects.requireNonNull(itemListLiveData.getValue()));
+        newItemList.addAll(currentIncidentList);
+
+        itemListLiveData.setValue(newItemList);
     }
-
-
 
 
 
