@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
-import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
+import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
@@ -20,7 +20,7 @@ import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 
 public class CurrentViewModel extends AbstractViewModel
 {
-    private MutableLiveData<List<CurrentIncidentModel>> currentIncidentListLiveData;
+    private MutableLiveData<List<ItemModel>> currentIncidentListLiveData;
 
 
 
@@ -36,7 +36,7 @@ public class CurrentViewModel extends AbstractViewModel
 
     public void setResultsForCurrentIncidentList(Object results) //refactor this out
     {
-        ArrayList<CurrentIncidentModel> currentIncidentList;
+        ArrayList<ItemModel> currentIncidentList;
 
         Log.d("CurrentViewModel", "setResultsForCurrentIncidentList on thread:" + Thread.currentThread().getName());
         currentIncidentList = XmlToCurrentInstancesList.getInstance().parse(results.toString());
@@ -48,7 +48,7 @@ public class CurrentViewModel extends AbstractViewModel
 
     public void onItemClickCurrentListView(int positionInt)
     {
-        CurrentIncidentModel selectedCurrentIncident;
+        ItemModel selectedCurrentIncident;
 
         selectedCurrentIncident = getCurrentIncidentListLiveData().getValue().get(positionInt);
 
@@ -67,7 +67,7 @@ public class CurrentViewModel extends AbstractViewModel
 
 
 
-    public MutableLiveData<List<CurrentIncidentModel>> getCurrentIncidentListLiveData()
+    public MutableLiveData<List<ItemModel>> getCurrentIncidentListLiveData()
     {
         if (currentIncidentListLiveData == null)
         {
@@ -76,7 +76,7 @@ public class CurrentViewModel extends AbstractViewModel
         return currentIncidentListLiveData;
     }
 
-    public void setCurrentIncidentListLiveData(ArrayList<CurrentIncidentModel> currentIncidentList)
+    public void setCurrentIncidentListLiveData(ArrayList<ItemModel> currentIncidentList)
     {
         if(currentIncidentListLiveData == null)
         {

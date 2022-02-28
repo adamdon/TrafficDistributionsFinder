@@ -1,12 +1,10 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
-import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewBinding;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentSelectedFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
+import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +12,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.text.SimpleDateFormat;
-
 
 public class CurrentSelectedFragment extends AbstractFragment
 {
-    CurrentIncidentModel currentIncident;
+    ItemModel currentIncident;
 
-    public CurrentSelectedFragment(App app, CurrentIncidentModel currentIncident)
+    public CurrentSelectedFragment(App app, ItemModel currentIncident)
     {
         super(app);
         this.currentIncident = currentIncident;

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
+import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 
 public class XmlToCurrentInstancesList
 {
@@ -38,9 +38,9 @@ public class XmlToCurrentInstancesList
 
 
 
-    public ArrayList<CurrentIncidentModel> parse(String xmlDataString)
+    public ArrayList<ItemModel> parse(String xmlDataString)
     {
-        ArrayList<CurrentIncidentModel> currentIncidentList = new ArrayList<>();
+        ArrayList<ItemModel> currentIncidentList = new ArrayList<>();
 
 
         try
@@ -60,7 +60,7 @@ public class XmlToCurrentInstancesList
             xmlPullParser.setInput(new StringReader(xmlDataString));
             int eventType;
 
-            CurrentIncidentModel currentIncident = null;
+            ItemModel currentIncident = null;
 
             while ((eventType = xmlPullParser.next()) != XmlPullParser.END_DOCUMENT)
             {
@@ -80,7 +80,7 @@ public class XmlToCurrentInstancesList
 
                 if (tagName.equalsIgnoreCase ("item"))
                 {
-                    currentIncident = new CurrentIncidentModel();
+                    currentIncident = new ItemModel();
 //                    Log.d("XMLParser", "\t\tItem found");
                 }
 

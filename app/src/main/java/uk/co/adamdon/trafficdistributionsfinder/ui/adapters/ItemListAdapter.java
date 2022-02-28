@@ -1,36 +1,30 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import uk.co.adamdon.trafficdistributionsfinder.R;
-import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
+import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
 
-public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentModel>
+public class ItemListAdapter extends ArrayAdapter<ItemModel>
 {
 
     private Context context;
     private int layoutResourceIdInt;
-    private List<CurrentIncidentModel> currentIncidentList;
+    private List<ItemModel> currentIncidentList;
 
 
-    public CurrentIncidentListAdapter(@NonNull Context context, int layoutResourceIdInt, List<CurrentIncidentModel> currentIncidentList)
+    public ItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<ItemModel> currentIncidentList)
     {
         super(context, layoutResourceIdInt, currentIncidentList);
         this.context = context;
@@ -47,7 +41,7 @@ public class CurrentIncidentListAdapter extends ArrayAdapter<CurrentIncidentMode
     {
         CurrentListItemViewBinding currentListItemViewBinding;
 
-        CurrentIncidentModel currentIncident;
+        ItemModel currentIncident;
         CurrentViewModel currentViewModel;
 
 

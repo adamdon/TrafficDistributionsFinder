@@ -3,7 +3,7 @@ package uk.co.adamdon.trafficdistributionsfinder.models;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class CurrentIncidentModel extends AbstractModel implements ItemInterface
+public class ItemModel extends AbstractModel implements ItemInterface
 {
     private String titleString;
     private String descriptionString;
@@ -13,7 +13,7 @@ public class CurrentIncidentModel extends AbstractModel implements ItemInterface
     private String geoPointString;
     private Date punDate;
 
-    public CurrentIncidentModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
+    public ItemModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
     {
         super();
         this.titleString = titleString;
@@ -24,7 +24,7 @@ public class CurrentIncidentModel extends AbstractModel implements ItemInterface
         this.punDate = punDate;
     }
 
-    public CurrentIncidentModel()
+    public ItemModel()
     {
         super();
     }

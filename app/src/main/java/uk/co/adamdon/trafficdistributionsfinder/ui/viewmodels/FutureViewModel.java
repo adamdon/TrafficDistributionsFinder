@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import uk.co.adamdon.trafficdistributionsfinder.models.CurrentIncidentModel;
+import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
 
 public class FutureViewModel extends AbstractViewModel
 {
-    private MutableLiveData<List<CurrentIncidentModel>> currentIncidentListLiveData;
+    private MutableLiveData<List<ItemModel>> itemListLiveData;
     private MutableLiveData<Date> selectedDateLiveData;
     private Date selectedDate;
 
@@ -36,43 +36,43 @@ public class FutureViewModel extends AbstractViewModel
 
     public void setResultsForCurrentIncidentList(Object results) //refactor this out
     {
-        ArrayList<CurrentIncidentModel> currentIncidentList;
+        ArrayList<ItemModel> currentIncidentList;
 
         Log.d("CurrentViewModel", "setResultsForCurrentIncidentList on thread:" + Thread.currentThread().getName());
         currentIncidentList = XmlToCurrentInstancesList.getInstance().parse(results.toString());
 
-        setCurrentIncidentListLiveData(currentIncidentList);
+        setItemListLiveData(currentIncidentList);
     }
 
 
 
     public void onItemClickCurrentListView(int positionInt)
     {
-        CurrentIncidentModel selectedCurrentIncident;
+        ItemModel selectedCurrentIncident;
 
-        selectedCurrentIncident = getCurrentIncidentListLiveData().getValue().get(positionInt);
+        selectedCurrentIncident = getItemListLiveData().getValue().get(positionInt);
 
         app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(app, selectedCurrentIncident) );
     }
 
 
 
-    public MutableLiveData<List<CurrentIncidentModel>> getCurrentIncidentListLiveData()
+    public MutableLiveData<List<ItemModel>> getItemListLiveData()
     {
-        if (currentIncidentListLiveData == null)
+        if (itemListLiveData == null)
         {
-            currentIncidentListLiveData = new MutableLiveData<>();
+            itemListLiveData = new MutableLiveData<>();
         }
-        return currentIncidentListLiveData;
+        return itemListLiveData;
     }
 
-    public void setCurrentIncidentListLiveData(ArrayList<CurrentIncidentModel> currentIncidentList)
+    public void setItemListLiveData(ArrayList<ItemModel> currentIncidentList)
     {
-        if(currentIncidentListLiveData == null)
+        if(itemListLiveData == null)
         {
-            currentIncidentListLiveData = new MutableLiveData<>();
+            itemListLiveData = new MutableLiveData<>();
         }
-        currentIncidentListLiveData.setValue(currentIncidentList);
+        itemListLiveData.setValue(currentIncidentList);
     }
 
 
