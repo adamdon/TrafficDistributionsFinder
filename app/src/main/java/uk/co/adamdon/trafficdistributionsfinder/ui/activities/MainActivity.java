@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import uk.co.adamdon.trafficdistributionsfinder.R;
-import uk.co.adamdon.trafficdistributionsfinder.ui.activities.AbstractActivity;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
@@ -43,16 +42,24 @@ public class MainActivity extends AbstractActivity
         app.getUiController().replaceFragmentByID( 1, new MenuFragment(getApp()));
 
 
-        showToast("Traficc distrutions finder loaded");
+        showToast("Traffic Disruptions Finder loaded");
     }
 
 
     @Override
     public void onBackPressed()
     {
-        app.getUiController().replaceFragmentByID( 0, new LogoFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
-        app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
+        if(app.getUiController().getFragmentTypeByContainerId(1).equals("MenuFragment"))
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            app.getUiController().replaceFragmentByID( 0, new LogoFragment(app) );
+            app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
+            app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
+            app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
+        }
+
     }
 }

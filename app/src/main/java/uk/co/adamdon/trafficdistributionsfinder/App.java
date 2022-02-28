@@ -12,7 +12,6 @@ public class App extends Application
 {
     private UiController uiController;
 
-
     @Override
     public void onCreate()
     {
@@ -22,16 +21,9 @@ public class App extends Application
 
     }
 
-    public MainActivity getCurrentActivity()
-    {
-        return uiController.getCurrentActivity();
-    }
-
     public UiController getUiController()
     {
         return uiController;
     }
-
-
 
 }

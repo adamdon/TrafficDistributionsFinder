@@ -33,13 +33,8 @@ public class UiController
     private App app;
     private MainActivity currentActivity;
 
-
     private ArrayList<FrameLayout> containersFrameLayoutsList;
-    private Boolean isBackEnabledBoolean;
-    private Fragment previousSlot1Fragment;
-    private Fragment currentSlot1Fragment;
-
-    private ExecutorService executorService;
+    private ArrayList<String> containerFragmentStringList;
 
 
 
@@ -48,101 +43,42 @@ public class UiController
     {
         this.app = app;
         registerLifecycleCallbacks();
-
-        isBackEnabledBoolean = true;
-        previousSlot1Fragment = new BlankFragment(app);
-        currentSlot1Fragment = new BlankFragment(app);
-
-        executorService = Executors.newSingleThreadExecutor();
-    }
-
-
-    private Fragment getFragmentById(final int pIdInt)
-    {
-        final Fragment returnFragment;
-
-        returnFragment = app.getCurrentActivity().getSupportFragmentManager().findFragmentById(pIdInt);
-
-        return returnFragment;
+        containerFragmentStringList = new ArrayList<>();
     }
 
 
 
-    public void replaceFragmentByID( int containerIndexInt, Fragment newFragment)
+    public void replaceFragmentByID(int containerIndexInt, Fragment newFragment)
     {
         FragmentTransaction fragmentTransaction;
         FrameLayout containerFrameLayout;
         int containerIdInt;
 
-        if(app.getCurrentActivity() != null)
+        if(currentActivity != null)
         {
-            fragmentTransaction  = app.getCurrentActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction  = currentActivity.getSupportFragmentManager().beginTransaction();
             containerFrameLayout = containersFrameLayoutsList.get( containerIndexInt );
             containerIdInt = containerFrameLayout.getId();
-
-            if(containerIndexInt == 1)
-            {
-                previousSlot1Fragment = getFragmentById(containerIdInt);
-            }
 
             fragmentTransaction.replace(containerIdInt, newFragment, newFragment.getClass().getSimpleName());
             fragmentTransaction.setTransition( FragmentTransaction.TRANSIT_FRAGMENT_OPEN );
 
+            containerFragmentStringList.set(containerIndexInt, newFragment.getClass().getSimpleName());
             try
             {
-                app.getCurrentActivity().runOnUiThread(() -> fragmentTransaction.commitNow() );
+                currentActivity.runOnUiThread(() -> fragmentTransaction.commitNow() );
             }
-            catch ( Exception e )
+            catch (Exception exception)
             {
-//                log( "replaceNewFragmentByID fragmentSlot : " +  pContainerIndexInt + " to new " + pNewFragment.getClass().getSimpleName());
-                e.printStackTrace();
+                exception.printStackTrace();
             }
-            if(containerIndexInt == 1)
-            {
-                currentSlot1Fragment = getFragmentById(containerIdInt);
-            }
-
         }
 
     }
 
 
-    public Fragment getFragmentFromContainer(int numberOfContainerInt)
-    {
-        final Fragment returnFragment;
-
-        returnFragment = app.getCurrentActivity().getSupportFragmentManager().findFragmentById(containersFrameLayoutsList.get( numberOfContainerInt ).getId());
-
-        return returnFragment;
-    }
 
 
-
-    public ViewModel getViewModelFromFragmentClass(Class fragmentClass, Class viewModelClass)
-    {
-        ViewModel lReturnViewModel = null;
-
-        try
-        {
-            for (final FrameLayout lCurrentFrameLayout : containersFrameLayoutsList)
-            {
-                final Fragment lContainerisedFragment;
-                lContainerisedFragment = app.getCurrentActivity().getSupportFragmentManager().findFragmentById(lCurrentFrameLayout.getId());
-
-                if (lContainerisedFragment.getClass() == fragmentClass)
-                {
-                    lReturnViewModel = new ViewModelProvider(lContainerisedFragment).get(viewModelClass);
-                }
-            }
-        } catch (Exception pE)
-        {
-//            log("Error " + pE.getMessage());
-            pE.printStackTrace();
-        }
-
-        return lReturnViewModel;
-
-    }
 
 
 
@@ -152,12 +88,12 @@ public class UiController
 
         LinearLayout returnLinearLayout = new LinearLayout(app.getApplicationContext());
 
-        returnLinearLayout.setId( View.generateViewId() );
-        returnLinearLayout.setOrientation( LinearLayout.VERTICAL );
+        returnLinearLayout.setId(View.generateViewId());
+        returnLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        for (final FrameLayout lCurrentFrameLayout : containersFrameLayoutsList)
+        for(FrameLayout currentFrameLayout : containersFrameLayoutsList)
         {
-            returnLinearLayout.addView(lCurrentFrameLayout);
+            returnLinearLayout.addView(currentFrameLayout);
         }
 
 
@@ -170,10 +106,10 @@ public class UiController
     private ArrayList<FrameLayout> setupContainerFrameLayoutsList(int containerCountInt)
     {
         ArrayList<FrameLayout> returnFrameLayoutList = new ArrayList<FrameLayout>();
-        FragmentTransaction fragmentTransaction = app.getCurrentActivity().getSupportFragmentManager().beginTransaction();
+        FragmentTransaction fragmentTransaction = currentActivity.getSupportFragmentManager().beginTransaction();
 
 
-        for (int lIndexInt = 0; lIndexInt < containerCountInt; lIndexInt++ )
+        for (int indexInt = 0; indexInt < containerCountInt; indexInt++ )
         {
             FrameLayout currentFrameLayout = new FrameLayout(app.getApplicationContext());
 
@@ -184,6 +120,7 @@ public class UiController
             currentFrameLayout.getLayoutTransition().enableTransitionType( LayoutTransition.CHANGING);
 
             returnFrameLayoutList.add(currentFrameLayout);
+            containerFragmentStringList.add(BlankFragment.class.getSimpleName());
 
             BlankFragment currentBlankFragment = new BlankFragment(app);
             fragmentTransaction.add(currentFrameLayout.getId(), currentBlankFragment, ("FRAGMENT_" + currentBlankFragment.toString()));
@@ -210,9 +147,9 @@ public class UiController
                 (Object)null,
                 PropertyValuesHolder.ofFloat( "scaleX", 1, 0),
                 PropertyValuesHolder.ofFloat("scaleY", 1, 0),
-                PropertyValuesHolder.ofFloat("alpha", 1, 0));
+                PropertyValuesHolder.ofFloat("alpha", 1, 0)
+        );
         scaleDownAnimator.setDuration(durationMillisecondsInt);
-        //scaleDownAnimator.setInterpolator(new OvershootInterpolator());
         scaleDownAnimator.setInterpolator(new OvershootInterpolator());
 
 
@@ -220,10 +157,10 @@ public class UiController
                 (Object)null,
                 PropertyValuesHolder.ofFloat( "scaleX", 0, 1),
                 PropertyValuesHolder.ofFloat( "scaleY", 0, 1),
-                PropertyValuesHolder.ofFloat("alpha", 0, 1));
+                PropertyValuesHolder.ofFloat("alpha", 0, 1)
+        );
         scaleUpAnimator.setDuration(durationMillisecondsInt);
         scaleUpAnimator.setStartDelay(durationMillisecondsInt);
-        //scaleUpAnimator.setInterpolator(new OvershootInterpolator());
         scaleUpAnimator.setInterpolator(new OvershootInterpolator());
 
 
@@ -238,49 +175,35 @@ public class UiController
 
 
 
-
-
-
-
-
-
-    public Fragment getPreviousSlot1Fragment()
+    public String getFragmentTypeByContainerId(int containerIdInt)
     {
-        return previousSlot1Fragment;
+        return containerFragmentStringList.get(containerIdInt);
     }
 
-
-    public void setBackEnabledBoolean(Boolean backEnabledBoolean )
-    {
-        isBackEnabledBoolean = backEnabledBoolean;
-    }
 
 
 
     public void registerLifecycleCallbacks()
     {
-        final Application.ActivityLifecycleCallbacks lActivityLifecycleCallbacks;
+        final Application.ActivityLifecycleCallbacks activityLifecycleCallbacks;
 
-        lActivityLifecycleCallbacks = new Application.ActivityLifecycleCallbacks()
+        activityLifecycleCallbacks = new Application.ActivityLifecycleCallbacks()
         {
             @Override
-            public void onActivityCreated(Activity pActivity, Bundle pSavedInstanceBundle)
+            public void onActivityCreated(Activity activity, Bundle savedInstanceBundle)
             {
-                //log("ActivityLifecycle of onActivityCreated for" + pActivity.getClass().getSimpleName());
-                currentActivity = (MainActivity)pActivity;
+                currentActivity = (MainActivity)activity;
             }
 
             @Override
             public void onActivityResumed(Activity activity)
             {
-                //log("ActivityLifecycle of onActivityResumed for" + activity.getClass().getSimpleName());
                 currentActivity = (MainActivity)activity;
             }
 
             @Override
             public void onActivityPaused(Activity activity)
             {
-                //log("ActivityLifecycle of onActivityPaused for" + activity.getClass().getSimpleName());
                 currentActivity = null;
             }
 
@@ -290,14 +213,53 @@ public class UiController
             @Override public void onActivityDestroyed(Activity activity) { }
         };
 
-        app.registerActivityLifecycleCallbacks(lActivityLifecycleCallbacks);
+        app.registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
     }
 
 
-    public MainActivity getCurrentActivity()
-    {
-        return currentActivity;
-    }
+
+
+    //
+    //// potential anti-pattern features
+    //
+
+//    public Fragment getFragmentFromContainer(int numberOfContainerInt)
+//    {
+//        final Fragment returnFragment;
+//
+//        returnFragment = currentActivity.getSupportFragmentManager().findFragmentById(containersFrameLayoutsList.get( numberOfContainerInt ).getId());
+//
+//        return returnFragment;
+//    }
+//
+//
+//
+//    public ViewModel getViewModelFromFragmentClass(Class fragmentClass, Class viewModelClass)
+//    {
+//        ViewModel returnViewModel = null;
+//
+//        try
+//        {
+//            for (final FrameLayout currentFrameLayout : containersFrameLayoutsList)
+//            {
+//                final Fragment containerisedFragment;
+//                containerisedFragment = currentActivity.getSupportFragmentManager().findFragmentById(currentFrameLayout.getId());
+//
+//                if (containerisedFragment.getClass() == fragmentClass)
+//                {
+//                    returnViewModel = new ViewModelProvider(containerisedFragment).get(viewModelClass);
+//                }
+//            }
+//        }
+//        catch (Exception exception)
+//        {
+//            exception.printStackTrace();
+//        }
+//
+//        return returnViewModel;
+//    }
+
+
 
 
 }
