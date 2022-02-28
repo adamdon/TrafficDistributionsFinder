@@ -15,21 +15,21 @@ import java.util.Locale;
 
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 
-public class XmlToCurrentInstancesList
+public class XmlToItemList
 {
-    private static XmlToCurrentInstancesList INSTANCE;
+    private static XmlToItemList INSTANCE;
 
 
-    private XmlToCurrentInstancesList()
+    private XmlToItemList()
     {
 
     }
 
-    public static XmlToCurrentInstancesList getInstance()
+    public static XmlToItemList getInstance()
     {
         if (INSTANCE == null)
         {
-            INSTANCE = new XmlToCurrentInstancesList();
+            INSTANCE = new XmlToItemList();
         }
         return INSTANCE;
     }
@@ -94,6 +94,9 @@ public class XmlToCurrentInstancesList
                     }
                     else if (tagName.equalsIgnoreCase("description"))
                     {
+                        //TODO check if starts with "start date"
+                        //TODO if note set start+end date to pubDate
+                        //TODO parse start and end date to model fields
                         String text = xmlPullParser.nextText();
                         currentIncident.setDescriptionString(text);
 //                        Log.d("parser", "Description found: " + text);

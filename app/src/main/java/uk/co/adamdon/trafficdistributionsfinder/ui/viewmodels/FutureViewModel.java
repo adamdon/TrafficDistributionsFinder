@@ -7,19 +7,16 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import java.util.TimeZone;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureResultsFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
-import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToItemList;
 
 public class FutureViewModel extends AbstractViewModel
 {
@@ -46,7 +43,7 @@ public class FutureViewModel extends AbstractViewModel
         ArrayList<ItemModel> itemList;
 
         Log.d("FutureViewModel", "setResultsForItemList on thread:" + Thread.currentThread().getName());
-        itemList = XmlToCurrentInstancesList.getInstance().parse(results.toString());
+        itemList = XmlToItemList.getInstance().parse(results.toString());
 
         setItemListLiveData(itemList);
 //        Log.d("FutureViewModel", "setResultsForItemList list size:" + getItemListLiveData().getValue().size());

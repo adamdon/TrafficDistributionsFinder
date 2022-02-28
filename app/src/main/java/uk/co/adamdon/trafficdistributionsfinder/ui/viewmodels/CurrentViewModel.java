@@ -12,7 +12,7 @@ import java.util.List;
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
-import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToItemList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
@@ -39,7 +39,7 @@ public class CurrentViewModel extends AbstractViewModel
         ArrayList<ItemModel> currentIncidentList;
 
         Log.d("CurrentViewModel", "setResultsForCurrentIncidentList on thread:" + Thread.currentThread().getName());
-        currentIncidentList = XmlToCurrentInstancesList.getInstance().parse(results.toString());
+        currentIncidentList = XmlToItemList.getInstance().parse(results.toString());
 
         setCurrentIncidentListLiveData(currentIncidentList);
     }
