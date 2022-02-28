@@ -41,6 +41,7 @@ public class FutureFragment extends AbstractFragment
 
         futureFragmentBinding = FutureFragmentBinding.inflate(layoutInflater,viewGroup,false);
         futureFragmentBinding.backButton.setOnClickListener(view -> requireActivity().onBackPressed());
+        futureFragmentBinding.searchDateButton.setOnClickListener(view -> futureViewModel.onSearchDateButtonClick());
         futureFragmentBinding.FutureDatePicker.init(
                 DateHelper.getInstance().getYearInt(futureViewModel.getSelectedDateLiveData().getValue()),
                 DateHelper.getInstance().getMonthInt(futureViewModel.getSelectedDateLiveData().getValue()),
@@ -51,7 +52,7 @@ public class FutureFragment extends AbstractFragment
 
 
 
-        futureViewModel.getSelectedDateLiveData().observe(getViewLifecycleOwner(), date -> futureFragmentBinding.selectButton.setText("Search: " + date.toString().substring(0, 11)));
+        futureViewModel.getSelectedDateLiveData().observe(getViewLifecycleOwner(), date -> futureFragmentBinding.searchDateButton.setText("Search Date: " + date.toString().substring(0, 11)));
 
 
         return nestContentInTemplateFrameLayout(futureFragmentBinding.getRoot());

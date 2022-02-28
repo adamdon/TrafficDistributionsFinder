@@ -7,21 +7,22 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.TimeZone;
 
 import uk.co.adamdon.trafficdistributionsfinder.business.Config;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToCurrentInstancesList;
 
 public class FutureViewModel extends AbstractViewModel
 {
     private MutableLiveData<List<ItemModel>> itemListLiveData;
     private MutableLiveData<Date> selectedDateLiveData;
-    private Date selectedDate;
-
 
 
     public FutureViewModel( @NonNull Application application )
@@ -50,6 +51,41 @@ public class FutureViewModel extends AbstractViewModel
     }
 
 
+    public void onSearchDateButtonClick()
+    {
+        ArrayList<ItemModel> fullItemList;
+        ArrayList<ItemModel> filteredItemList;
+        Date selectedDate;
+        Date selectedWithoutTimeDate;
+
+
+        selectedDate = new Date(Objects.requireNonNull(selectedDateLiveData.getValue()).getTime());
+        selectedWithoutTimeDate = DateHelper.getInstance().removeTimeFromDate(selectedDate);
+        fullItemList = new ArrayList<>(Objects.requireNonNull(getItemListLiveData().getValue()));
+        filteredItemList = new ArrayList<>();
+
+        for(ItemModel currentItem : fullItemList)
+        {
+            Date currentDate = DateHelper.getInstance().removeTimeFromDate(currentItem.getPunDate());
+
+            if(currentDate.toString().equals(selectedWithoutTimeDate.toString()))
+            {
+                filteredItemList.add(currentItem);
+            }
+        }
+//        Log.d("END", "currentItem: " + filteredItemList.size() );
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -72,14 +108,6 @@ public class FutureViewModel extends AbstractViewModel
 //
 //        app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(app, selectedCurrentIncident) );
 //    }
-
-
-
-
-
-
-
-
 
 
 

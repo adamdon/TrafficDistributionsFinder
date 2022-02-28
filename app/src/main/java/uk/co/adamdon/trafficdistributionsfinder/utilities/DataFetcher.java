@@ -10,8 +10,6 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.work.Worker;
-import androidx.work.WorkerParameters;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
