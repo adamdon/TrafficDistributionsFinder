@@ -41,6 +41,7 @@
 
 
                 <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/colorCardView"
                     android:layout_width="8dp"
                     android:layout_height="50dp"
                     android:layout_marginBottom="3dp"
