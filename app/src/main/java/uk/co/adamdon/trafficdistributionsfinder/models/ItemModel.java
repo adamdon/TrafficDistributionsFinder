@@ -7,6 +7,7 @@ public class ItemModel extends AbstractModel implements ItemInterface
 {
     private String titleString;
     private String descriptionString;
+    private String originalDescriptionString;
     private String linkString;
     private String authorString;
     private String commentsString;
@@ -15,15 +16,18 @@ public class ItemModel extends AbstractModel implements ItemInterface
     private Date startDate;
     private Date endDate;
 
-    public ItemModel(String titleString, String descriptionString, String linkString, String authorString, String commentsString, Date punDate)
+    public ItemModel(String titleString, String descriptionString, String originalDescriptionString, String linkString, String authorString, String commentsString, String geoPointString, Date punDate, Date startDate, Date endDate)
     {
-        super();
         this.titleString = titleString;
         this.descriptionString = descriptionString;
+        this.originalDescriptionString = originalDescriptionString;
         this.linkString = linkString;
         this.authorString = authorString;
         this.commentsString = commentsString;
+        this.geoPointString = geoPointString;
         this.punDate = punDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 
     public ItemModel()
@@ -99,6 +103,11 @@ public class ItemModel extends AbstractModel implements ItemInterface
         return endDate;
     }
 
+    public String getOriginalDescriptionString()
+    {
+        return originalDescriptionString;
+    }
+
     public void setTitleString(String titleString)
     {
         this.titleString = titleString;
@@ -142,6 +151,11 @@ public class ItemModel extends AbstractModel implements ItemInterface
     public void setEndDate(Date endDate)
     {
         this.endDate = endDate;
+    }
+
+    public void setOriginalDescriptionString(String originalDescriptionString)
+    {
+        this.originalDescriptionString = originalDescriptionString;
     }
 
     @Override

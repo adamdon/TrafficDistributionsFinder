@@ -40,7 +40,7 @@ public class XmlToItemList
 
     public ArrayList<ItemModel> parse(String xmlDataString)
     {
-        ArrayList<ItemModel> currentIncidentList = new ArrayList<>();
+        ArrayList<ItemModel> currentItemList = new ArrayList<>();
 
 
         try
@@ -60,7 +60,7 @@ public class XmlToItemList
             xmlPullParser.setInput(new StringReader(xmlDataString));
             int eventType;
 
-            ItemModel currentIncident = null;
+            ItemModel currentItem = null;
 
             while ((eventType = xmlPullParser.next()) != XmlPullParser.END_DOCUMENT)
             {
@@ -69,8 +69,8 @@ public class XmlToItemList
 
                 if (eventType == XmlPullParser.END_TAG && tagName.equalsIgnoreCase("item"))
                 {
-                    currentIncidentList.add(currentIncident);
-                    currentIncident = null;
+                    currentItemList.add(currentItem);
+                    currentItem = null;
                 }
 
                 if (eventType != XmlPullParser.START_TAG)
@@ -80,16 +80,16 @@ public class XmlToItemList
 
                 if (tagName.equalsIgnoreCase ("item"))
                 {
-                    currentIncident = new ItemModel();
+                    currentItem = new ItemModel();
 //                    Log.d("XMLParser", "\t\tItem found");
                 }
 
-                if (currentIncident != null)
+                if (currentItem != null)
                 {
                     if (tagName.equalsIgnoreCase("title"))
                     {
                         String text = xmlPullParser.nextText();
-                        currentIncident.setTitleString(text);
+                        currentItem.setTitleString(text);
 //                        Log.d("parser", "Title found: " + text);
                     }
                     else if (tagName.equalsIgnoreCase("description"))
@@ -98,19 +98,59 @@ public class XmlToItemList
                         //TODO if note set start+end date to pubDate
                         //TODO parse start and end date to model fields
                         String text = xmlPullParser.nextText();
-                        currentIncident.setDescriptionString(text);
+                        currentItem.setDescriptionString(text);
 //                        Log.d("parser", "Description found: " + text);
+                        currentItem.setOriginalDescriptionString(text);
+                        if(text.startsWith("Start Date:"))
+                        {
+                            String startDateString;
+                            String endDateString;
+                            String contentDescriptionString;
+
+                            startDateString = text.substring((text.lastIndexOf("Start Date: ") + 12), text.lastIndexOf("<br />End Date:")); ;
+                            endDateString = text.substring((text.lastIndexOf("End Date: ") + 10), (text.lastIndexOf("00:00") + 5) );
+                            contentDescriptionString = text.substring((text.lastIndexOf("00:00") + 5), text.length());
+                            contentDescriptionString = contentDescriptionString.replaceAll("<br />", " ");
+                            contentDescriptionString = contentDescriptionString.replaceAll("\\r\\n|\\r|\\n", " ");
+//                            Log.d("parser", "!!!!! startDateString: " + startDateString);
+//                            Log.d("parser", "!!!!! endDateString: " + endDateString);
+//                            Log.d("parser", "!!!!! contentDescriptionString: " + contentDescriptionString);
+
+                            try
+                            {
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("E, d MMMM yyyy - HH:mm", Locale.ENGLISH);
+                                Date parsedStartDate = simpleDateFormat.parse(startDateString);
+                                Date parsedEndDate = simpleDateFormat.parse(endDateString);
+
+                                currentItem.setStartDate(parsedStartDate);
+                                currentItem.setStartDate(parsedEndDate);
+
+//                                Log.d("parser", "!!!!! parsedStartDate: " + parsedStartDate);
+                            }
+                            catch (Exception exception)
+                            {
+                                Log.e("parser", "Error could not parse date" + exception.getMessage());
+                                exception.printStackTrace();
+                            }
+
+                            currentItem.setDescriptionString(contentDescriptionString);
+                        }
+                        else
+                        {
+                            currentItem.setDescriptionString(text);
+
+                        }
                     }
                     else if (tagName.equalsIgnoreCase("link"))
                     {
                         String text = xmlPullParser.nextText();
-                        currentIncident.setLinkString(text);
+                        currentItem.setLinkString(text);
 //                        Log.d("parser", "Link found: " + text);
                     }
                     else if (tagName.equalsIgnoreCase("georss:point"))
                     {
                         String text = xmlPullParser.nextText();
-                        currentIncident.setGeoPointString(text);
+                        currentItem.setGeoPointString(text);
 //                        Log.d("parser", "GeoPoint Found: " + text);
                     }
 
@@ -124,7 +164,13 @@ public class XmlToItemList
                             SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formatString, Locale.ENGLISH);
                             Date parsedDate = simpleDateFormat.parse(text);
 
-                            currentIncident.setPunDate(parsedDate);
+                            currentItem.setPunDate(parsedDate);
+
+                            if(!currentItem.getOriginalDescriptionString().startsWith("Start Date:"))
+                            {
+                                currentItem.setStartDate(parsedDate);
+                                currentItem.setEndDate(parsedDate);
+                            }
                         }
                         catch (Exception exception)
                         {
@@ -139,7 +185,7 @@ public class XmlToItemList
             Log.d("parser", "XML could not be parsed: " + exception.getMessage());
         }
 
-        return currentIncidentList;
+        return currentItemList;
     }
 
 

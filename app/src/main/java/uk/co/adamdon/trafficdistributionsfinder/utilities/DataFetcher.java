@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
@@ -111,10 +112,14 @@ public class DataFetcher
             bufferedReader.close();
 
         }
-        catch (Exception e)
+        catch (Exception exception)
         {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
+            Log.e("Error", exception.getMessage());
+            exception.printStackTrace();
+            if(Objects.equals(exception.getMessage(), "Chain validation failed"))
+            {
+                Log.e("Error", "SSL certificate problem, check date and time");
+            }
         }
 
         return fullResultString.toString();
