@@ -65,9 +65,10 @@ public class FutureViewModel extends AbstractViewModel
 
         for(ItemModel currentItem : fullItemList)
         {
-            Date currentDate = DateHelper.getInstance().removeTimeFromDate(currentItem.getPunDate());
+            Date startDate = DateHelper.getInstance().removeTimeFromDate(currentItem.getStartDate());
+            Date endData = DateHelper.getInstance().removeTimeFromDate(currentItem.getEndDate());
 
-            if(currentDate.toString().equals(selectedWithoutTimeDate.toString()))
+            if((selectedDate.getTime() >= startDate.getTime()) && (selectedDate.getTime() <= endData.getTime()))
             {
                 filteredItemList.add(currentItem);
             }
