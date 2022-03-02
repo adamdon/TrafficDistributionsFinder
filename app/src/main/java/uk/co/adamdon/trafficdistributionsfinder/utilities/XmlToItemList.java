@@ -94,9 +94,6 @@ public class XmlToItemList
                     }
                     else if (tagName.equalsIgnoreCase("description"))
                     {
-                        //TODO check if starts with "start date"
-                        //TODO if note set start+end date to pubDate
-                        //TODO parse start and end date to model fields
                         String text = xmlPullParser.nextText();
                         currentItem.setDescriptionString(text);
 //                        Log.d("parser", "Description found: " + text);
@@ -110,7 +107,7 @@ public class XmlToItemList
                             startDateString = text.substring((text.lastIndexOf("Start Date: ") + 12), text.lastIndexOf("<br />End Date:")); ;
                             endDateString = text.substring((text.lastIndexOf("End Date: ") + 10), (text.lastIndexOf("00:00") + 5) );
                             contentDescriptionString = text.substring((text.lastIndexOf("00:00") + 5), text.length());
-                            contentDescriptionString = contentDescriptionString.replaceAll("<br />", " ");
+                            contentDescriptionString = contentDescriptionString.replaceAll("<br />", "");
                             contentDescriptionString = contentDescriptionString.replaceAll("\\r\\n|\\r|\\n", " ");
 //                            Log.d("parser", "!!!!! startDateString: " + startDateString);
 //                            Log.d("parser", "!!!!! endDateString: " + endDateString);
@@ -123,7 +120,7 @@ public class XmlToItemList
                                 Date parsedEndDate = simpleDateFormat.parse(endDateString);
 
                                 currentItem.setStartDate(parsedStartDate);
-                                currentItem.setStartDate(parsedEndDate);
+                                currentItem.setEndDate(parsedEndDate);
 
 //                                Log.d("parser", "!!!!! parsedStartDate: " + parsedStartDate);
                             }

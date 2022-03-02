@@ -16,7 +16,7 @@ import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewB
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
 
-public class ItemListAdapter extends ArrayAdapter<ItemModel>
+public class CurrentItemListAdapter extends ArrayAdapter<ItemModel>
 {
 
     private Context context;
@@ -24,7 +24,7 @@ public class ItemListAdapter extends ArrayAdapter<ItemModel>
     private List<ItemModel> currentIncidentList;
 
 
-    public ItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<ItemModel> currentIncidentList)
+    public CurrentItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<ItemModel> currentIncidentList)
     {
         super(context, layoutResourceIdInt, currentIncidentList);
         this.context = context;

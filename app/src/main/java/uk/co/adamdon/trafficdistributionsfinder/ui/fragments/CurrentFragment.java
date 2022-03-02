@@ -4,7 +4,7 @@ import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.ItemListAdapter;
+import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.CurrentItemListAdapter;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
 
 import android.os.Bundle;
@@ -47,7 +47,7 @@ public class CurrentFragment extends AbstractFragment
 
 
 
-        currentViewModel.getCurrentIncidentListLiveData().observe(getViewLifecycleOwner(),currentIncidentList -> currentFragmentBinding.currentListView.setAdapter(new ItemListAdapter(getContext(), R.layout.current_list_item_view, currentViewModel.getCurrentIncidentListLiveData().getValue())));
+        currentViewModel.getCurrentIncidentListLiveData().observe(getViewLifecycleOwner(),currentIncidentList -> currentFragmentBinding.currentListView.setAdapter(new CurrentItemListAdapter(getContext(), R.layout.current_list_item_view, currentViewModel.getCurrentIncidentListLiveData().getValue())));
 
 
         return nestContentInTemplateFrameLayout(currentFragmentBinding.getRoot());
