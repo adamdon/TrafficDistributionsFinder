@@ -1,11 +1,19 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,7 +43,28 @@ public class SearchFragment extends AbstractFragment
 
         searchFragmentBinding = SearchFragmentBinding.inflate(layoutInflater,viewGroup,false);
         searchFragmentBinding.backButton.setOnClickListener(view -> requireActivity().onBackPressed());
-        searchFragmentBinding.searchTextButton.setOnClickListener(view -> searchViewModel.onSearchTextButtonClick());
+        searchFragmentBinding.searchTextButton.setOnClickListener(view ->
+        {
+            InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+//            searchFragmentBinding.searchTextInputEditText.clearFocus();
+
+//            searchFragmentBinding.searchTextInputEditText.setFocusableInTouchMode(false);
+//            searchFragmentBinding.searchTextInputEditText.setFocusable(false);
+//            searchFragmentBinding.searchTextInputEditText.setFocusableInTouchMode(true);
+//            searchFragmentBinding.searchTextInputEditText.setFocusable(true);
+            searchViewModel.onSearchTextButtonClick();
+        });
+        searchFragmentBinding.searchTextInputEditText.setOnEditorActionListener((v, actionId, event) ->
+        {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE))
+            {
+                InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                searchViewModel.onSearchTextButtonClick();
+            }
+            return false;
+        });
         searchFragmentBinding.searchTextInputEditText.addTextChangedListener(new TextWatcher()
         {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
