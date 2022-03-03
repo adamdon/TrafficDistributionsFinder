@@ -1,5 +1,7 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels;
 
+import static uk.co.adamdon.trafficdistributionsfinder.App.TAG;
+
 import android.app.Application;
 import android.util.Log;
 
@@ -9,12 +11,10 @@ import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
+import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.SearchFragment;
 
 public class MenuViewModel extends AbstractViewModel
 {
-    private static final String TAG = "MenuViewModel";
-
-
 
     public MenuViewModel( @NonNull Application application )
     {
@@ -23,19 +23,23 @@ public class MenuViewModel extends AbstractViewModel
     }
 
 
+    public void currentDistributionsOnClick()
+    {
+        app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
+        app.getUiController().replaceFragmentByID( 1, new CurrentFragment(app) );
+    }
+
+
     public void futureDistributionsOnClick()
     {
-        Log.d(TAG, "currentDistributionsOnClick: test");
         app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
         app.getUiController().replaceFragmentByID( 1, new FutureFragment(app) );
     }
 
-
-    public void currentDistributionsOnClick()
+    public void searchDistributionsOnClick()
     {
-        Log.d(TAG, "currentDistributionsOnClick: test");
         app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new CurrentFragment(app) );
+        app.getUiController().replaceFragmentByID( 1, new SearchFragment(app) );
     }
 
 }

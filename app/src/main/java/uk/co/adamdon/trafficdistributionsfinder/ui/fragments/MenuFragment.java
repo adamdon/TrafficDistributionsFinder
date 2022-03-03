@@ -37,6 +37,7 @@ public class MenuFragment extends AbstractFragment
         menuFragmentBinding = MenuFragmentBinding.inflate(layoutInflater,viewGroup,false);
         menuFragmentBinding.currentDistributionsButton.setOnClickListener(view -> menuViewModel.currentDistributionsOnClick());
         menuFragmentBinding.futureDistributionsButton.setOnClickListener(view -> menuViewModel.futureDistributionsOnClick());
+        menuFragmentBinding.searchDistributionsButton.setOnClickListener(view -> menuViewModel.searchDistributionsOnClick());
 
 
 

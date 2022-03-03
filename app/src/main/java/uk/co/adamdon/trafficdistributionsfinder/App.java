@@ -12,11 +12,13 @@ public class App extends Application
 {
     private UiController uiController;
 
+    public static final String TAG = "App";
+
     @Override
     public void onCreate()
     {
         super.onCreate();
-        System.out.println("start up");
+        System.out.println("start up for trafficdistributionsfinder");
         uiController = new UiController(this);
 
     }
