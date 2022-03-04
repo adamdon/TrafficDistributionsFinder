@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsItemViewBinding;
+import uk.co.adamdon.trafficdistributionsfinder.databinding.SearchResultsItemViewBinding;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 
 public class SearchItemListAdapter extends ArrayAdapter<ItemModel>
@@ -40,7 +41,7 @@ public class SearchItemListAdapter extends ArrayAdapter<ItemModel>
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
-        FutureResultsItemViewBinding futureResultsItemViewBinding;
+        SearchResultsItemViewBinding searchResultsItemViewBinding;
         ItemModel currentIncident;
         SimpleDateFormat startEndSimpleDateFormat;
         String startEndDateString; //TODO show total days too
@@ -50,12 +51,12 @@ public class SearchItemListAdapter extends ArrayAdapter<ItemModel>
 
         if(convertView == null)
         {
-            futureResultsItemViewBinding = FutureResultsItemViewBinding.inflate(LayoutInflater.from(context), parent,false);
-            convertView = futureResultsItemViewBinding.getRoot();
+            searchResultsItemViewBinding = SearchResultsItemViewBinding.inflate(LayoutInflater.from(context), parent,false);
+            convertView = searchResultsItemViewBinding.getRoot();
         }
         else //recycling view if it is already on screen for better performance
         {
-            futureResultsItemViewBinding = FutureResultsItemViewBinding.bind(convertView);
+            searchResultsItemViewBinding = SearchResultsItemViewBinding.bind(convertView);
         }
 
         currentIncident = resultsItemList.get(position);
@@ -142,10 +143,10 @@ public class SearchItemListAdapter extends ArrayAdapter<ItemModel>
 //                break;
 //        }
 
-        futureResultsItemViewBinding.colorCardView.setCardBackgroundColor(cardViewColorInt);
-        futureResultsItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
-        futureResultsItemViewBinding.currentDateTextView.setText(startEndDateString + " (Days: " + totalDaysLong + ")");
-        futureResultsItemViewBinding.currentDescriptionTextView.setText(currentIncident.getDescriptionPreViewString(40));
+        searchResultsItemViewBinding.colorCardView.setCardBackgroundColor(cardViewColorInt);
+        searchResultsItemViewBinding.currentTitleTextView.setText(currentIncident.getTitleString());
+//        futureResultsItemViewBinding.currentDateTextView.setText(startEndDateString + " (Days: " + totalDaysLong + ")");
+        searchResultsItemViewBinding.currentDescriptionTextView.setText(currentIncident.getDescriptionString());
 
 
 

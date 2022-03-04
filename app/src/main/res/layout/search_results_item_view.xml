@@ -4,14 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="90dp"
     android:background="?attr/selectableItemBackground"
     android:focusable="false">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
@@ -43,7 +43,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/colorCardView"
                     android:layout_width="8dp"
-                    android:layout_height="50dp"
+                    android:layout_height="70dp"
                     android:layout_marginBottom="3dp"
                     android:layout_marginTop="3dp"
                     android:layout_marginLeft="3dp"
@@ -79,32 +79,29 @@
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-
                     android:layout_weight="2"
+                    android:maxLines="1"
                     android:text="[currentTitleTextView]"/>
 
                 <TextView
                     android:id="@+id/currentDescriptionTextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:gravity="start"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    app:autoSizeTextType="uniform"
-
-                    app:autoSizeStepGranularity="1sp"
                     android:text="[Description]"/>
 
-                <TextView
-                    android:id="@+id/currentDateTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="start"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                    android:textColor="@color/colorPrimary"
-                    app:autoSizeTextType="uniform"
+<!--                <TextView-->
+<!--                    android:id="@+id/currentDateTextView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="start"-->
+<!--                    android:textAppearance="@style/TextAppearance.MaterialComponents.Button"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    app:autoSizeTextType="uniform"-->
 
-                    android:layout_weight="1"
-                    android:text="[date]"/>
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="[date]"/>-->
 
 
 
