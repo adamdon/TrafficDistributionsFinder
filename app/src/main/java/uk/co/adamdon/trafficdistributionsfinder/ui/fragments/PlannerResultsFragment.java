@@ -15,10 +15,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
@@ -26,6 +28,7 @@ import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsFragmen
 import uk.co.adamdon.trafficdistributionsfinder.databinding.PlannerResultsFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.FutureItemListAdapter;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
 
 
 public class PlannerResultsFragment extends AbstractFragment
@@ -62,14 +65,38 @@ public class PlannerResultsFragment extends AbstractFragment
 
     public void onMapReady(GoogleMap googleMap)
     {
+        UiSettings uiSettings;
+        LatLng defaultLatLng;
+
+
         Log.d(TAG, "onMapReady: Map");
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        googleMap.addMarker(new MarkerOptions()
-                .position(sydney)
-                .title("Marker in Sydney"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        uiSettings = googleMap.getUiSettings();
+        uiSettings.setZoomControlsEnabled(true);
+        uiSettings.setCompassEnabled(false);
+        uiSettings.setMyLocationButtonEnabled(true);
+        uiSettings.setScrollGesturesEnabled(true);
+        uiSettings.setZoomGesturesEnabled(true);
+        uiSettings.setTiltGesturesEnabled(false);
+        uiSettings.setRotateGesturesEnabled(false);
+
+        defaultLatLng = new LatLng(55.8642, -4.2518);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLatLng, 10) );
+
+        for(ItemModel currentItem : resultsItemList)
+        {
+            MarkerOptions markerOptions;
+
+            markerOptions = new MarkerOptions();
+            markerOptions.title(currentItem.getTitleString());
+            markerOptions.position(currentItem.getGeoPointLatLng());
+
+            googleMap.addMarker(markerOptions);
+
+        }
+
+
     }
 
 
