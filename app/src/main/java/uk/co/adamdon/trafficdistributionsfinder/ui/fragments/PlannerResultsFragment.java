@@ -35,9 +35,8 @@ public class PlannerResultsFragment extends AbstractFragment
 {
     ArrayList<ItemModel> resultsItemList;
 
-    public PlannerResultsFragment(App app, ArrayList<ItemModel> resultsItemList)
+    public PlannerResultsFragment(ArrayList<ItemModel> resultsItemList)
     {
-        super(app);
         this.resultsItemList = resultsItemList;
     }
 

@@ -26,9 +26,9 @@ public class CurrentFragment extends AbstractFragment
     private CurrentViewModel currentViewModel;
 
 
-    public CurrentFragment(App app)
+    public CurrentFragment()
     {
-        super(app);
+
     }
 
 

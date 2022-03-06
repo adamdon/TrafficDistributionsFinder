@@ -26,27 +26,27 @@ public class MenuViewModel extends AbstractViewModel
 
     public void currentDistributionsOnClick()
     {
-        app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new CurrentFragment(app) );
+        app.getUiController().replaceFragmentByID( 0, new BlankFragment() );
+        app.getUiController().replaceFragmentByID( 1, new CurrentFragment() );
     }
 
 
     public void futureDistributionsOnClick()
     {
-        app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new FutureFragment(app) );
+        app.getUiController().replaceFragmentByID( 0, new BlankFragment() );
+        app.getUiController().replaceFragmentByID( 1, new FutureFragment() );
     }
 
     public void searchDistributionsOnClick()
     {
-        app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new SearchFragment(app) );
+        app.getUiController().replaceFragmentByID( 0, new BlankFragment() );
+        app.getUiController().replaceFragmentByID( 1, new SearchFragment() );
     }
 
     public void journeyPlannerButtonOnClick()
     {
-        app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new PlannerFragment(app) );
+        app.getUiController().replaceFragmentByID( 0, new BlankFragment() );
+        app.getUiController().replaceFragmentByID( 1, new PlannerFragment() );
     }
 
 }

@@ -26,9 +26,9 @@ import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.SearchViewModel;
 
 public class SearchFragment extends AbstractFragment
 {
-    public SearchFragment(App app)
+    public SearchFragment()
     {
-        super(app);
+
     }
 
 

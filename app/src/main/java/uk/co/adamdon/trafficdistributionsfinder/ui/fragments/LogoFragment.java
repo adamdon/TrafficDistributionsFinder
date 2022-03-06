@@ -20,9 +20,9 @@ public class LogoFragment extends AbstractFragment
     private MenuViewModel menuViewModel;
 
 
-    public LogoFragment(App app)
+    public LogoFragment()
     {
-        super(app);
+
     }
 
 

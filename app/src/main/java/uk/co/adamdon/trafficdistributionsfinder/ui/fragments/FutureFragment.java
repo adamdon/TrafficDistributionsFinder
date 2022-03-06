@@ -24,9 +24,9 @@ import java.util.Date;
 
 public class FutureFragment extends AbstractFragment
 {
-    public FutureFragment(App app)
+    public FutureFragment()
     {
-        super(app);
+
     }
 
 

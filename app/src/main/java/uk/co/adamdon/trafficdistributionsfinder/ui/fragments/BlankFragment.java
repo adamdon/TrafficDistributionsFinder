@@ -10,9 +10,9 @@ import uk.co.adamdon.trafficdistributionsfinder.R;
 
 public class BlankFragment extends AbstractFragment
 {
-    public BlankFragment(App app)
+    public BlankFragment()
     {
-        super(app);
+
 
     }
 

@@ -21,9 +21,9 @@ import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
 
 public class PlannerFragment extends AbstractFragment
 {
-    public PlannerFragment(App app)
+    public PlannerFragment()
     {
-        super(app);
+
     }
 
 

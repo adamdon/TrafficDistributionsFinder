@@ -38,8 +38,8 @@ public class MainActivity extends AbstractActivity
         rootLinearLayout.addView(fragmentsLinearLayout);
 
 
-        app.getUiController().replaceFragmentByID( 0, new LogoFragment(getApp()));
-        app.getUiController().replaceFragmentByID( 1, new MenuFragment(getApp()));
+        app.getUiController().replaceFragmentByID( 0, new LogoFragment());
+        app.getUiController().replaceFragmentByID( 1, new MenuFragment());
 
 
         showToast("Traffic Disruptions Finder loaded");
@@ -55,10 +55,10 @@ public class MainActivity extends AbstractActivity
         }
         else
         {
-            app.getUiController().replaceFragmentByID( 0, new LogoFragment(app) );
-            app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
-            app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
-            app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
+            app.getUiController().replaceFragmentByID( 0, new LogoFragment() );
+            app.getUiController().replaceFragmentByID( 1, new MenuFragment() );
+            app.getUiController().replaceFragmentByID( 2, new BlankFragment() );
+            app.getUiController().replaceFragmentByID( 3, new BlankFragment() );
         }
 
     }

@@ -17,9 +17,8 @@ public class CurrentSelectedFragment extends AbstractFragment
 {
     ItemModel currentIncident;
 
-    public CurrentSelectedFragment(App app, ItemModel currentIncident)
+    public CurrentSelectedFragment(ItemModel currentIncident)
     {
-        super(app);
         this.currentIncident = currentIncident;
     }
 

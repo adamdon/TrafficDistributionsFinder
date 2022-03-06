@@ -22,9 +22,8 @@ public class FutureResultsFragment extends AbstractFragment
 {
     ArrayList<ItemModel> resultsItemList;
 
-    public FutureResultsFragment(App app, ArrayList<ItemModel> resultsItemList)
+    public FutureResultsFragment(ArrayList<ItemModel> resultsItemList)
     {
-        super(app);
         this.resultsItemList = resultsItemList;
     }
 

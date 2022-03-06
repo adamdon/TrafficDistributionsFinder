@@ -10,22 +10,25 @@ import android.widget.LinearLayout;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import java.util.Objects;
+
 import uk.co.adamdon.trafficdistributionsfinder.App;
 
 public abstract class AbstractFragment extends Fragment
 {
     private FrameLayout rootFrameLayout;
 
-    protected App app;
 
-    protected AbstractFragment(App app)
+    protected AbstractFragment()
     {
-        this.app = app;
         //rootFrameLayout = nestContentIntoTemplateFrameLayout();
 
     }
 
-
+    public App getApp()
+    {
+        return (App)(requireActivity().getApplication());
+    }
 
     protected FrameLayout nestContentInTemplateFrameLayout(View contentView)
     {
@@ -67,7 +70,7 @@ public abstract class AbstractFragment extends Fragment
     {
         final int pxInt;
 
-        pxInt = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpFloat, app.getResources().getDisplayMetrics());
+        pxInt = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpFloat, getApp().getResources().getDisplayMetrics());
 
         return pxInt;
     }

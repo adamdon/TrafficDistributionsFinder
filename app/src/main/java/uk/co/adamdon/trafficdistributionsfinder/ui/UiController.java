@@ -122,7 +122,7 @@ public class UiController
             returnFrameLayoutList.add(currentFrameLayout);
             containerFragmentStringList.add(BlankFragment.class.getSimpleName());
 
-            BlankFragment currentBlankFragment = new BlankFragment(app);
+            BlankFragment currentBlankFragment = new BlankFragment();
             fragmentTransaction.add(currentFrameLayout.getId(), currentBlankFragment, ("FRAGMENT_" + currentBlankFragment.toString()));
         }
 

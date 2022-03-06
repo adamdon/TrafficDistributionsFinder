@@ -84,7 +84,7 @@ public class SearchViewModel extends AbstractViewModel
                 }
             }
             
-            app.getUiController().replaceFragmentByID( 2, new SearchResultsFragment(app, filteredItemList) );
+            app.getUiController().replaceFragmentByID( 2, new SearchResultsFragment(filteredItemList) );
         }
         else
         {

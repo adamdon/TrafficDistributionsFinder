@@ -52,17 +52,17 @@ public class CurrentViewModel extends AbstractViewModel
 
         selectedCurrentIncident = getCurrentIncidentListLiveData().getValue().get(positionInt);
 
-        app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(app, selectedCurrentIncident) );
+        app.getUiController().replaceFragmentByID( 3, new CurrentSelectedFragment(selectedCurrentIncident) );
     }
 
 
 
     public void backOnClick()
     {
-        app.getUiController().replaceFragmentByID( 0, new LogoFragment(app) );
-        app.getUiController().replaceFragmentByID( 1, new MenuFragment(app) );
-        app.getUiController().replaceFragmentByID( 2, new BlankFragment(app) );
-        app.getUiController().replaceFragmentByID( 3, new BlankFragment(app) );
+        app.getUiController().replaceFragmentByID( 0, new LogoFragment() );
+        app.getUiController().replaceFragmentByID( 1, new MenuFragment() );
+        app.getUiController().replaceFragmentByID( 2, new BlankFragment() );
+        app.getUiController().replaceFragmentByID( 3, new BlankFragment() );
     }
 
 

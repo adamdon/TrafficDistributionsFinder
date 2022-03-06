@@ -77,7 +77,7 @@ public class PlannerViewModel extends AbstractViewModel
             }
         }
 
-        app.getUiController().replaceFragmentByID( 2, new PlannerResultsFragment(app, filteredItemList) );
+        app.getUiController().replaceFragmentByID( 2, new PlannerResultsFragment(filteredItemList) );
 
 //        Log.d("END", "currentItem: " + filteredItemList.size() );
     }

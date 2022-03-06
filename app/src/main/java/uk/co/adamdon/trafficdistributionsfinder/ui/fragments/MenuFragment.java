@@ -19,9 +19,9 @@ public class MenuFragment extends AbstractFragment
     private MenuViewModel menuViewModel;
 
 
-    public MenuFragment(App app)
+    public MenuFragment()
     {
-        super(app);
+
     }
 
 

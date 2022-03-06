@@ -74,7 +74,7 @@ public class FutureViewModel extends AbstractViewModel
             }
         }
 
-        app.getUiController().replaceFragmentByID( 2, new FutureResultsFragment(app, filteredItemList) );
+        app.getUiController().replaceFragmentByID( 2, new FutureResultsFragment(filteredItemList) );
 
 //        Log.d("END", "currentItem: " + filteredItemList.size() );
     }

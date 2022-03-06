@@ -23,9 +23,8 @@ public class SearchResultsFragment extends AbstractFragment
 {
     ArrayList<ItemModel> resultsItemList;
 
-    public SearchResultsFragment(App app, ArrayList<ItemModel> resultsItemList)
+    public SearchResultsFragment(ArrayList<ItemModel> resultsItemList)
     {
-        super(app);
         this.resultsItemList = resultsItemList;
     }
 
