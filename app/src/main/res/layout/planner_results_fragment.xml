@@ -49,11 +49,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-
-        <ListView
-            android:id="@+id/futureListView"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/mapFragmentContainerView"
             android:layout_width="match_parent"
-            android:layout_height="210dp" />
+            android:layout_height="210dp"
+            android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+<!--        <ListView-->
+<!--            android:id="@+id/futureListView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="210dp" />-->
 
     </LinearLayout>
 
