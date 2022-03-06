@@ -39,12 +39,16 @@
             android:text=" "/>
     </LinearLayout>
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true" />
 
     <Button
         android:id="@+id/currentDistributionsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="0dp"
         app:iconGravity="start"
         android:text="Current Distributions"/>
 
@@ -81,7 +85,6 @@
         android:layout_marginTop="8dp"
         app:iconGravity="start"
         android:text="Settings"/>
-
 
 
 

@@ -23,7 +23,7 @@ public class App extends Application
     public void onCreate()
     {
         super.onCreate();
-        System.out.println("start up for trafficdistributionsfinder");
+        System.out.println("trafficdistributionsfinder start up... (╯°□°)╯︵ ┻━┻");
         uiController = new UiController(this);
 
         appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "trafficdistributionsfinder").build();

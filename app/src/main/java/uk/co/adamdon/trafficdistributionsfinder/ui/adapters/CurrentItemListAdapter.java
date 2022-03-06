@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewBinding;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
 
 public class CurrentItemListAdapter extends ArrayAdapter<Item>

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.utilities.ApiConfig;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToItemList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;

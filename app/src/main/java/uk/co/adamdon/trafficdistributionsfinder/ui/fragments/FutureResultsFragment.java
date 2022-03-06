@@ -2,7 +2,7 @@ package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.FutureItemListAdapter;
 
 import android.os.Bundle;

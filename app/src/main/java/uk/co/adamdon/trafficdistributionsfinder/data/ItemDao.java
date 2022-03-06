@@ -6,8 +6,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
-
 @Dao
 public interface ItemDao
 {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.SearchResultsFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.SearchItemListAdapter;
 
 

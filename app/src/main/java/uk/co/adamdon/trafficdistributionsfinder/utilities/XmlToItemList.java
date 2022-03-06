@@ -2,8 +2,6 @@ package uk.co.adamdon.trafficdistributionsfinder.utilities;
 
 import android.util.Log;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -15,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 
 public class XmlToItemList
 {

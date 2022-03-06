@@ -1,7 +1,7 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentSelectedFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 import uk.co.adamdon.trafficdistributionsfinder.utilities.ApiConfig;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureResultsFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;

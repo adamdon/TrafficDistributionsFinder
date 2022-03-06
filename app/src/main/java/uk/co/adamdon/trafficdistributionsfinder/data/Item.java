@@ -1,4 +1,4 @@
-package uk.co.adamdon.trafficdistributionsfinder.data.models;
+package uk.co.adamdon.trafficdistributionsfinder.data;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.PlannerResultsFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 
 
 public class PlannerResultsFragment extends AbstractFragment

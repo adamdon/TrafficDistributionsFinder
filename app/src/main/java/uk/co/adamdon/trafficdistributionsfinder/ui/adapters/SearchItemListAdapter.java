@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import uk.co.adamdon.trafficdistributionsfinder.databinding.SearchResultsItemViewBinding;
-import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
+import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 
 public class SearchItemListAdapter extends ArrayAdapter<Item>
 {
