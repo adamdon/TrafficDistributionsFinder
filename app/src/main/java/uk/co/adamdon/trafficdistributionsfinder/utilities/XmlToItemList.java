@@ -2,6 +2,8 @@ package uk.co.adamdon.trafficdistributionsfinder.utilities;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -146,9 +148,22 @@ public class XmlToItemList
                     }
                     else if (tagName.equalsIgnoreCase("georss:point"))
                     {
-                        String text = xmlPullParser.nextText();
-                        currentItem.setGeoPointString(text);
-//                        Log.d("parser", "GeoPoint Found: " + text);
+                        String textString;
+                        String[] splitStringArray;
+                        double latDouble;
+                        double LagDouble;
+                        LatLng geoPointLatLng;
+
+
+                        textString = xmlPullParser.nextText();
+                        splitStringArray = textString.split(" ");
+                        latDouble = Double.parseDouble(splitStringArray[0]);
+                        LagDouble = Double.parseDouble(splitStringArray[1]);
+                        geoPointLatLng = new LatLng(latDouble, LagDouble);
+
+                        currentItem.setGeoPointString(textString);
+                        currentItem.setGeoPointLatLng(geoPointLatLng);
+//                        Log.d("parser", "GeoPoint geoPointLatLng: " + geoPointLatLng.toString());
                     }
 
                     else if (tagName.equalsIgnoreCase("pubDate"))

@@ -1,5 +1,7 @@
 package uk.co.adamdon.trafficdistributionsfinder.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class ItemModel extends AbstractModel implements ItemInterface
     private String authorString;
     private String commentsString;
     private String geoPointString;
+    private LatLng geoPointLatLng;
     private Date punDate;
     private Date startDate;
     private Date endDate;
@@ -93,6 +96,11 @@ public class ItemModel extends AbstractModel implements ItemInterface
         return geoPointString;
     }
 
+    public LatLng getGeoPointLatLng()
+    {
+        return geoPointLatLng;
+    }
+
     public Date getStartDate()
     {
         return startDate;
@@ -141,6 +149,11 @@ public class ItemModel extends AbstractModel implements ItemInterface
     public void setGeoPointString(String geoPointString)
     {
         this.geoPointString = geoPointString;
+    }
+
+    public void setGeoPointLatLng(LatLng geoPointLatLng)
+    {
+        this.geoPointLatLng = geoPointLatLng;
     }
 
     public void setStartDate(Date startDate)
