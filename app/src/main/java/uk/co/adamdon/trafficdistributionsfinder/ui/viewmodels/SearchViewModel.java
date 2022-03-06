@@ -9,22 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
-import uk.co.adamdon.trafficdistributionsfinder.business.Config;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureResultsFragment;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.ApiConfig;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.SearchResultsFragment;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.DataFetcher;
-import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToItemList;
 
 public class SearchViewModel extends AbstractViewModel
 {
-    private MutableLiveData<List<ItemModel>> itemListLiveData;
+    private MutableLiveData<List<Item>> itemListLiveData;
     private MutableLiveData<String> textStringLiveData;
 
 
@@ -33,16 +29,16 @@ public class SearchViewModel extends AbstractViewModel
         super(application);
         Log.d(TAG, "SearchViewModel: start up");
 
-        DataFetcher.getInstance().get(Config.CURRENT_INCIDENTS_URL, (results) -> setResultsForItemList(results));
-        DataFetcher.getInstance().get(Config.ROADWORKS_URL, (results) -> setResultsForItemList(results));
-        DataFetcher.getInstance().get(Config.PLANNED_ROADWORKS_URL, (results) -> setResultsForItemList(results));
+        DataFetcher.getInstance().get(ApiConfig.CURRENT_INCIDENTS_URL, (results) -> setResultsForItemList(results));
+        DataFetcher.getInstance().get(ApiConfig.ROADWORKS_URL, (results) -> setResultsForItemList(results));
+        DataFetcher.getInstance().get(ApiConfig.PLANNED_ROADWORKS_URL, (results) -> setResultsForItemList(results));
     }
 
 
 
     public void setResultsForItemList(Object results) //refactor this out
     {
-        ArrayList<ItemModel> itemList;
+        ArrayList<Item> itemList;
 
         Log.d("FutureViewModel", "setResultsForItemList on thread:" + Thread.currentThread().getName());
         itemList = XmlToItemList.getInstance().parse(results.toString());
@@ -54,8 +50,8 @@ public class SearchViewModel extends AbstractViewModel
 
     public void onSearchTextButtonClick()
     {
-        ArrayList<ItemModel> fullItemList;
-        ArrayList<ItemModel> filteredItemList;
+        ArrayList<Item> fullItemList;
+        ArrayList<Item> filteredItemList;
         String searchTextString;
 
 
@@ -67,7 +63,7 @@ public class SearchViewModel extends AbstractViewModel
             filteredItemList = new ArrayList<>();
             Log.d(TAG, "onSearchTextButtonClick: " + searchTextString);
 
-            for(ItemModel currentItem : fullItemList)
+            for(Item currentItem : fullItemList)
             {
                 StringBuilder contentStringBuilder;
 
@@ -133,24 +129,24 @@ public class SearchViewModel extends AbstractViewModel
     //
     ///// GETTERS AND SETTERS
     //
-    public MutableLiveData<List<ItemModel>> getItemListLiveData()
+    public MutableLiveData<List<Item>> getItemListLiveData()
     {
         if (itemListLiveData == null)
         {
             itemListLiveData = new MutableLiveData<>();
-            itemListLiveData.setValue(new ArrayList<ItemModel>());
+            itemListLiveData.setValue(new ArrayList<Item>());
         }
         return itemListLiveData;
     }
 
-    public void setItemListLiveData(ArrayList<ItemModel> currentIncidentList)
+    public void setItemListLiveData(ArrayList<Item> currentIncidentList)
     {
-        ArrayList<ItemModel> newItemList;
+        ArrayList<Item> newItemList;
 
         if(itemListLiveData == null)
         {
             itemListLiveData = new MutableLiveData<>();
-            itemListLiveData.setValue(new ArrayList<ItemModel>());
+            itemListLiveData.setValue(new ArrayList<Item>());
         }
 
         newItemList = new ArrayList<>(Objects.requireNonNull(itemListLiveData.getValue()));

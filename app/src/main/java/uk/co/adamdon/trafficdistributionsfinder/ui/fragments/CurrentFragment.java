@@ -1,9 +1,8 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
-import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.CurrentItemListAdapter;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
 
@@ -54,23 +53,23 @@ public class CurrentFragment extends AbstractFragment
     }
 
 
-    public List<ItemModel> getTestList()//delete this one done
+    public List<Item> getTestList()//delete this one done
     {
-        List<ItemModel> itemModels = new ArrayList<>();
+        List<Item> items = new ArrayList<>();
 
-        ItemModel itemModel1 = new ItemModel();
-        ItemModel itemModel2 = new ItemModel();
-        ItemModel itemModel3 = new ItemModel();
+        Item item1 = new Item();
+        Item item2 = new Item();
+        Item item3 = new Item();
 
-        itemModel1.setTitleString("test 1");
-        itemModel2.setTitleString("test 2");
-        itemModel3.setTitleString("test 3");
+        item1.setTitleString("test 1");
+        item2.setTitleString("test 2");
+        item3.setTitleString("test 3");
 
-        itemModels.add(itemModel1);
-        itemModels.add(itemModel2);
-        itemModels.add(itemModel3);
+        items.add(item1);
+        items.add(item2);
+        items.add(item3);
 
-        return itemModels;
+        return items;
     }
 
 

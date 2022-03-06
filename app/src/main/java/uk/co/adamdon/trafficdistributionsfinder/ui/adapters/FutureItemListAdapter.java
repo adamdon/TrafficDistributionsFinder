@@ -14,20 +14,18 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewBinding;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsItemViewBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 
-public class FutureItemListAdapter extends ArrayAdapter<ItemModel>
+public class FutureItemListAdapter extends ArrayAdapter<Item>
 {
 
     private Context context;
     private int layoutResourceIdInt;
-    private List<ItemModel> resultsItemList;
+    private List<Item> resultsItemList;
 
 
-    public FutureItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<ItemModel> resultsItemList)
+    public FutureItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<Item> resultsItemList)
     {
         super(context, layoutResourceIdInt, resultsItemList);
         this.context = context;
@@ -43,7 +41,7 @@ public class FutureItemListAdapter extends ArrayAdapter<ItemModel>
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
         FutureResultsItemViewBinding futureResultsItemViewBinding;
-        ItemModel currentIncident;
+        Item currentIncident;
         SimpleDateFormat startEndSimpleDateFormat;
         String startEndDateString; //TODO show total days too
         long totalDaysLong;

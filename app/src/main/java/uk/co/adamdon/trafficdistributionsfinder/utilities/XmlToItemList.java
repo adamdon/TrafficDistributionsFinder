@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 
 public class XmlToItemList
 {
@@ -40,9 +40,9 @@ public class XmlToItemList
 
 
 
-    public ArrayList<ItemModel> parse(String xmlDataString)
+    public ArrayList<Item> parse(String xmlDataString)
     {
-        ArrayList<ItemModel> currentItemList = new ArrayList<>();
+        ArrayList<Item> currentItemList = new ArrayList<>();
 
 
         try
@@ -62,7 +62,7 @@ public class XmlToItemList
             xmlPullParser.setInput(new StringReader(xmlDataString));
             int eventType;
 
-            ItemModel currentItem = null;
+            Item currentItem = null;
 
             while ((eventType = xmlPullParser.next()) != XmlPullParser.END_DOCUMENT)
             {
@@ -82,7 +82,7 @@ public class XmlToItemList
 
                 if (tagName.equalsIgnoreCase ("item"))
                 {
-                    currentItem = new ItemModel();
+                    currentItem = new Item();
 //                    Log.d("XMLParser", "\t\tItem found");
                 }
 
@@ -148,21 +148,9 @@ public class XmlToItemList
                     }
                     else if (tagName.equalsIgnoreCase("georss:point"))
                     {
-                        String textString;
-                        String[] splitStringArray;
-                        double latDouble;
-                        double LagDouble;
-                        LatLng geoPointLatLng;
+                        String text = xmlPullParser.nextText();
 
-
-                        textString = xmlPullParser.nextText();
-                        splitStringArray = textString.split(" ");
-                        latDouble = Double.parseDouble(splitStringArray[0]);
-                        LagDouble = Double.parseDouble(splitStringArray[1]);
-                        geoPointLatLng = new LatLng(latDouble, LagDouble);
-
-                        currentItem.setGeoPointString(textString);
-                        currentItem.setGeoPointLatLng(geoPointLatLng);
+                        currentItem.setGeoPointString(text);
 //                        Log.d("parser", "GeoPoint geoPointLatLng: " + geoPointLatLng.toString());
                     }
 

@@ -1,8 +1,7 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
-import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentSelectedFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,9 +14,9 @@ import androidx.annotation.Nullable;
 
 public class CurrentSelectedFragment extends AbstractFragment
 {
-    ItemModel currentIncident;
+    Item currentIncident;
 
-    public CurrentSelectedFragment(ItemModel currentIncident)
+    public CurrentSelectedFragment(Item currentIncident)
     {
         this.currentIncident = currentIncident;
     }

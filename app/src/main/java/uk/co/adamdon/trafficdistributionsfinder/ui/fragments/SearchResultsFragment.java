@@ -10,20 +10,17 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
-import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.SearchResultsFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.FutureItemListAdapter;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.SearchItemListAdapter;
 
 
 public class SearchResultsFragment extends AbstractFragment
 {
-    ArrayList<ItemModel> resultsItemList;
+    ArrayList<Item> resultsItemList;
 
-    public SearchResultsFragment(ArrayList<ItemModel> resultsItemList)
+    public SearchResultsFragment(ArrayList<Item> resultsItemList)
     {
         this.resultsItemList = resultsItemList;
     }

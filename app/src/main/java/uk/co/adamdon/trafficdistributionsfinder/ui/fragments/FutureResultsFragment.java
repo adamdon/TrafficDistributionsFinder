@@ -1,10 +1,8 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
-import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.CurrentItemListAdapter;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.FutureItemListAdapter;
 
 import android.os.Bundle;
@@ -20,9 +18,9 @@ import java.util.ArrayList;
 
 public class FutureResultsFragment extends AbstractFragment
 {
-    ArrayList<ItemModel> resultsItemList;
+    ArrayList<Item> resultsItemList;
 
-    public FutureResultsFragment(ArrayList<ItemModel> resultsItemList)
+    public FutureResultsFragment(ArrayList<Item> resultsItemList)
     {
         this.resultsItemList = resultsItemList;
     }

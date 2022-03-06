@@ -13,18 +13,18 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import uk.co.adamdon.trafficdistributionsfinder.databinding.CurrentListItemViewBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels.CurrentViewModel;
 
-public class CurrentItemListAdapter extends ArrayAdapter<ItemModel>
+public class CurrentItemListAdapter extends ArrayAdapter<Item>
 {
 
     private Context context;
     private int layoutResourceIdInt;
-    private List<ItemModel> currentIncidentList;
+    private List<Item> currentIncidentList;
 
 
-    public CurrentItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<ItemModel> currentIncidentList)
+    public CurrentItemListAdapter(@NonNull Context context, int layoutResourceIdInt, List<Item> currentIncidentList)
     {
         super(context, layoutResourceIdInt, currentIncidentList);
         this.context = context;
@@ -41,7 +41,7 @@ public class CurrentItemListAdapter extends ArrayAdapter<ItemModel>
     {
         CurrentListItemViewBinding currentListItemViewBinding;
 
-        ItemModel currentIncident;
+        Item currentIncident;
         CurrentViewModel currentViewModel;
 
 

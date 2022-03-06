@@ -13,29 +13,23 @@ import androidx.annotation.Nullable;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-import uk.co.adamdon.trafficdistributionsfinder.App;
 import uk.co.adamdon.trafficdistributionsfinder.R;
-import uk.co.adamdon.trafficdistributionsfinder.databinding.FutureResultsFragmentBinding;
 import uk.co.adamdon.trafficdistributionsfinder.databinding.PlannerResultsFragmentBinding;
-import uk.co.adamdon.trafficdistributionsfinder.models.ItemModel;
-import uk.co.adamdon.trafficdistributionsfinder.ui.adapters.FutureItemListAdapter;
-import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
+import uk.co.adamdon.trafficdistributionsfinder.data.models.Item;
 
 
 public class PlannerResultsFragment extends AbstractFragment
 {
-    ArrayList<ItemModel> resultsItemList;
+    ArrayList<Item> resultsItemList;
 
-    public PlannerResultsFragment(ArrayList<ItemModel> resultsItemList)
+    public PlannerResultsFragment(ArrayList<Item> resultsItemList)
     {
         this.resultsItemList = resultsItemList;
     }
@@ -83,7 +77,7 @@ public class PlannerResultsFragment extends AbstractFragment
         defaultLatLng = new LatLng(55.8642, -4.2518);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLatLng, 10) );
 
-        for(ItemModel currentItem : resultsItemList)
+        for(Item currentItem : resultsItemList)
         {
             MarkerOptions markerOptions;
 

@@ -1,11 +1,16 @@
-package uk.co.adamdon.trafficdistributionsfinder.models;
+package uk.co.adamdon.trafficdistributionsfinder.data.models;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
-public class ItemModel extends AbstractModel implements ItemInterface
+@Entity
+public class Item
 {
     private String titleString;
     private String descriptionString;
@@ -14,44 +19,64 @@ public class ItemModel extends AbstractModel implements ItemInterface
     private String authorString;
     private String commentsString;
     private String geoPointString;
-    private LatLng geoPointLatLng;
+//    private LatLng geoPointLatLng;
     private Date punDate;
     private Date startDate;
     private Date endDate;
 
-    public ItemModel(String titleString, String descriptionString, String originalDescriptionString, String linkString, String authorString, String commentsString, String geoPointString, Date punDate, Date startDate, Date endDate)
+    @PrimaryKey
+    @NonNull
+    private UUID uuid;
+
+//    public Item(String titleString, String descriptionString, String originalDescriptionString, String linkString, String authorString, String commentsString, String geoPointString, Date punDate, Date startDate, Date endDate)
+//    {
+//        this.titleString = titleString;
+//        this.descriptionString = descriptionString;
+//        this.originalDescriptionString = originalDescriptionString;
+//        this.linkString = linkString;
+//        this.authorString = authorString;
+//        this.commentsString = commentsString;
+//        this.geoPointString = geoPointString;
+//        this.punDate = punDate;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+
+//    uuid = UUID.randomUUID();
+
+//    }
+
+    public Item()
     {
-        this.titleString = titleString;
-        this.descriptionString = descriptionString;
-        this.originalDescriptionString = originalDescriptionString;
-        this.linkString = linkString;
-        this.authorString = authorString;
-        this.commentsString = commentsString;
-        this.geoPointString = geoPointString;
-        this.punDate = punDate;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        uuid = UUID.randomUUID();
+
     }
 
-    public ItemModel()
+
+
+
+
+    public LatLng getGeoPointLatLng()
     {
-        super();
+        String textString;
+        String[] splitStringArray;
+        double latDouble;
+        double LagDouble;
+        LatLng geoPointLatLng;
+
+
+        textString = geoPointString;
+        splitStringArray = textString.split(" ");
+        latDouble = Double.parseDouble(splitStringArray[0]);
+        LagDouble = Double.parseDouble(splitStringArray[1]);
+        geoPointLatLng = new LatLng(latDouble, LagDouble);
+
+
+        return geoPointLatLng;
     }
 
 
 
 
-
-
-    public String getTitleString()
-    {
-        return titleString;
-    }
-
-    public String getDescriptionString()
-    {
-        return descriptionString;
-    }
 
     public String getDescriptionPreViewString(int numberOfCharsInt)
     {
@@ -69,6 +94,18 @@ public class ItemModel extends AbstractModel implements ItemInterface
         descriptionPreviewString += "...";
 
         return descriptionPreviewString;
+    }
+
+
+
+    public String getTitleString()
+    {
+        return titleString;
+    }
+
+    public String getDescriptionString()
+    {
+        return descriptionString;
     }
 
     public String getLinkString()
@@ -96,11 +133,6 @@ public class ItemModel extends AbstractModel implements ItemInterface
         return geoPointString;
     }
 
-    public LatLng getGeoPointLatLng()
-    {
-        return geoPointLatLng;
-    }
-
     public Date getStartDate()
     {
         return startDate;
@@ -114,6 +146,12 @@ public class ItemModel extends AbstractModel implements ItemInterface
     public String getOriginalDescriptionString()
     {
         return originalDescriptionString;
+    }
+
+    @NonNull
+    public UUID getUuid()
+    {
+        return uuid;
     }
 
     public void setTitleString(String titleString)
@@ -151,10 +189,10 @@ public class ItemModel extends AbstractModel implements ItemInterface
         this.geoPointString = geoPointString;
     }
 
-    public void setGeoPointLatLng(LatLng geoPointLatLng)
-    {
-        this.geoPointLatLng = geoPointLatLng;
-    }
+//    public void setGeoPointLatLng(LatLng geoPointLatLng)
+//    {
+//        this.geoPointLatLng = geoPointLatLng;
+//    }
 
     public void setStartDate(Date startDate)
     {
@@ -169,6 +207,11 @@ public class ItemModel extends AbstractModel implements ItemInterface
     public void setOriginalDescriptionString(String originalDescriptionString)
     {
         this.originalDescriptionString = originalDescriptionString;
+    }
+
+    public void setUuid(@NonNull UUID uuid)
+    {
+        this.uuid = uuid;
     }
 
     @Override
