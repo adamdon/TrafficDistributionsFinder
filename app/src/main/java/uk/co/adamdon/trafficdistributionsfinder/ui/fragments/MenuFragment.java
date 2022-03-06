@@ -38,6 +38,7 @@ public class MenuFragment extends AbstractFragment
         menuFragmentBinding.currentDistributionsButton.setOnClickListener(view -> menuViewModel.currentDistributionsOnClick());
         menuFragmentBinding.futureDistributionsButton.setOnClickListener(view -> menuViewModel.futureDistributionsOnClick());
         menuFragmentBinding.searchDistributionsButton.setOnClickListener(view -> menuViewModel.searchDistributionsOnClick());
+        menuFragmentBinding.journeyPlannerButton.setOnClickListener(view -> menuViewModel.journeyPlannerButtonOnClick());
 
 
 

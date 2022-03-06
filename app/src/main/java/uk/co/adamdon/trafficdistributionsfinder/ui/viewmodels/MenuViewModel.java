@@ -11,6 +11,7 @@ import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.FutureFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.MenuFragment;
+import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.PlannerFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.SearchFragment;
 
 public class MenuViewModel extends AbstractViewModel
@@ -40,6 +41,12 @@ public class MenuViewModel extends AbstractViewModel
     {
         app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
         app.getUiController().replaceFragmentByID( 1, new SearchFragment(app) );
+    }
+
+    public void journeyPlannerButtonOnClick()
+    {
+        app.getUiController().replaceFragmentByID( 0, new BlankFragment(app) );
+        app.getUiController().replaceFragmentByID( 1, new PlannerFragment(app) );
     }
 
 }

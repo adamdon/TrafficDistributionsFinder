@@ -25,7 +25,7 @@
             android:layout_weight="4"
             android:gravity="start"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:text="Future Issues" />
+            android:text="Planner" />
 
 
         <TextView
@@ -51,7 +51,7 @@
 
 
         <DatePicker
-            android:id="@+id/futureDatePicker"
+            android:id="@+id/plannerDatePicker"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:padding="0dp"

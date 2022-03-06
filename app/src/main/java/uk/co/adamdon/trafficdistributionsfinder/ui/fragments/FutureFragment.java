@@ -42,13 +42,13 @@ public class FutureFragment extends AbstractFragment
         futureFragmentBinding = FutureFragmentBinding.inflate(layoutInflater,viewGroup,false);
         futureFragmentBinding.backButton.setOnClickListener(view -> requireActivity().onBackPressed());
         futureFragmentBinding.searchDateButton.setOnClickListener(view -> futureViewModel.onSearchDateButtonClick());
-        futureFragmentBinding.FutureDatePicker.init(
+        futureFragmentBinding.futureDatePicker.init(
                 DateHelper.getInstance().getYearInt(futureViewModel.getSelectedDateLiveData().getValue()),
                 DateHelper.getInstance().getMonthInt(futureViewModel.getSelectedDateLiveData().getValue()),
                 DateHelper.getInstance().getDayInt(futureViewModel.getSelectedDateLiveData().getValue()),
                 (DatePicker view, int year, int monthOfYear, int dayOfMonth) -> futureViewModel.setSelectedDate(DateHelper.getInstance().getDate(year, monthOfYear, dayOfMonth))
         );
-        futureFragmentBinding.FutureDatePicker.setMinDate(new Date().getTime());
+        futureFragmentBinding.futureDatePicker.setMinDate(new Date().getTime());
 
 
 
