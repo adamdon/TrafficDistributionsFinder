@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.35989583333333336" />
+        <entry key="app/src/main/res/layout-land/menu_fragment.xml" value="0.26255950927734384" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16210739614994935" />
         <entry key="app/src/main/res/layout/blank_fragment.xml" value="0.16210739614994935" />
         <entry key="app/src/main/res/layout/current_fragment_layout.xml" value="0.16210739614994935" />
@@ -27,5 +28,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.16210739614994935" />
+      </ProjectState>
+    </option>
   </component>
 </project>
