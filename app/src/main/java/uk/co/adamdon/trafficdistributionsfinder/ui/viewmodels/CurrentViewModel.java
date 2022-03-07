@@ -1,17 +1,23 @@
 package uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels;
 
+import static uk.co.adamdon.trafficdistributionsfinder.App.TAG;
+
 import android.app.Application;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import uk.co.adamdon.trafficdistributionsfinder.utilities.ApiConfig;
 import uk.co.adamdon.trafficdistributionsfinder.data.Item;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.LogoFragment;
+import uk.co.adamdon.trafficdistributionsfinder.utilities.DateHelper;
 import uk.co.adamdon.trafficdistributionsfinder.utilities.XmlToItemList;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.BlankFragment;
 import uk.co.adamdon.trafficdistributionsfinder.ui.fragments.CurrentSelectedFragment;
@@ -29,19 +35,32 @@ public class CurrentViewModel extends AbstractViewModel
         super(application);
 
         Log.d("CurrentViewModel", "CurrentViewModel: crearted");
-        DataFetcher.getInstance().get(ApiConfig.CURRENT_INCIDENTS_URL, (results) -> setResultsForCurrentIncidentList(results));
+        AsyncTask.execute(() -> setOnlyCurrentItems(app.getAllItemsDatabase().ItemDao().getAll()));
     }
 
 
 
-    public void setResultsForCurrentIncidentList(Object results) //refactor this out
+    public void setOnlyCurrentItems(List<Item> currentIncidentList)
     {
-        ArrayList<Item> currentIncidentList;
+        ArrayList<Item> fullItemList;
+        ArrayList<Item> filteredItemList;
 
-        Log.d("CurrentViewModel", "setResultsForCurrentIncidentList on thread:" + Thread.currentThread().getName());
-        currentIncidentList = XmlToItemList.getInstance().parse(results.toString());
+        fullItemList = new ArrayList<>(currentIncidentList);
 
-        setCurrentIncidentListLiveData(currentIncidentList);
+
+        filteredItemList = new ArrayList<>();
+
+        for(Item currentItem : fullItemList)
+        {
+
+            if(!currentItem.getOriginalDescriptionString().startsWith("Start Date: "))
+            {
+                Log.d(TAG, "setOnlyCurrentItems: " + currentItem.getOriginalDescriptionString());
+                filteredItemList.add(currentItem);
+            }
+        }
+
+        setCurrentIncidentListLiveData(filteredItemList);
     }
 
 
@@ -57,13 +76,6 @@ public class CurrentViewModel extends AbstractViewModel
 
 
 
-    public void backOnClick()
-    {
-        app.getUiController().replaceFragmentByID( 0, new LogoFragment() );
-        app.getUiController().replaceFragmentByID( 1, new MenuFragment() );
-        app.getUiController().replaceFragmentByID( 2, new BlankFragment() );
-        app.getUiController().replaceFragmentByID( 3, new BlankFragment() );
-    }
 
 
 
@@ -72,17 +84,27 @@ public class CurrentViewModel extends AbstractViewModel
         if (currentIncidentListLiveData == null)
         {
             currentIncidentListLiveData = new MutableLiveData<>();
+            currentIncidentListLiveData.setValue(new ArrayList<Item>());
         }
         return currentIncidentListLiveData;
     }
 
-    public void setCurrentIncidentListLiveData(ArrayList<Item> currentIncidentList)
+
+
+    public void setCurrentIncidentListLiveData(List<Item> currentIncidentList)
     {
         if(currentIncidentListLiveData == null)
         {
             currentIncidentListLiveData = new MutableLiveData<>();
+            currentIncidentListLiveData.postValue(new ArrayList<Item>(currentIncidentList));
         }
-        currentIncidentListLiveData.setValue(currentIncidentList);
+        else
+        {
+            ArrayList<Item> newItemList;
+            newItemList = new ArrayList<>(currentIncidentListLiveData.getValue());
+            newItemList.addAll(currentIncidentList);
+            currentIncidentListLiveData.postValue(newItemList);
+        }
     }
 
 }

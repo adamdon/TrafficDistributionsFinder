@@ -42,7 +42,7 @@ public class MainActivity extends AbstractActivity
         app.getUiController().replaceFragmentByID( 1, new MenuFragment());
 
 
-        showToast("Traffic Disruptions Finder loaded");
+//        showToast("Traffic Disruptions Finder loaded");
     }
 
 

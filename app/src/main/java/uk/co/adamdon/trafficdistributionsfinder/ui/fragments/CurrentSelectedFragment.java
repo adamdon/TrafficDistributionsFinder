@@ -21,6 +21,16 @@ public class CurrentSelectedFragment extends AbstractFragment
         this.currentIncident = currentIncident;
     }
 
+    public CurrentSelectedFragment()
+    {
+        Item emptyItem;
+
+        emptyItem = new Item();
+        emptyItem.setDescriptionString("");
+
+        this.currentIncident = emptyItem;
+    }
+
 
     @Nullable
     @Override

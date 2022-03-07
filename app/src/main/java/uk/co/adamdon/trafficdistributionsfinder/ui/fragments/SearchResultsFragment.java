@@ -25,6 +25,11 @@ public class SearchResultsFragment extends AbstractFragment
         this.resultsItemList = resultsItemList;
     }
 
+    public SearchResultsFragment()
+    {
+        this.resultsItemList = new ArrayList<>();
+    }
+
 
     @Nullable
     @Override

@@ -34,6 +34,10 @@ public class PlannerResultsFragment extends AbstractFragment
         this.resultsItemList = resultsItemList;
     }
 
+    public PlannerResultsFragment()
+    {
+        this.resultsItemList = new ArrayList<>();
+    }
 
     @Nullable
     @Override

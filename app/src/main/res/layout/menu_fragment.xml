@@ -40,9 +40,12 @@
     </LinearLayout>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/linearProgressIndicator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        app:trackCornerRadius="5dp"
+        />
 
     <Button
         android:id="@+id/currentDistributionsButton"
@@ -76,15 +79,6 @@
         app:iconGravity="start"
         android:text="Journey Planner"/>
 
-
-
-    <Button
-        android:id="@+id/settingsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:iconGravity="start"
-        android:text="Settings"/>
 
 
 

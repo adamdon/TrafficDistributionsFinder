@@ -25,6 +25,11 @@ public class FutureResultsFragment extends AbstractFragment
         this.resultsItemList = resultsItemList;
     }
 
+    public FutureResultsFragment()
+    {
+        this.resultsItemList = new ArrayList<>();
+    }
+
 
     @Nullable
     @Override

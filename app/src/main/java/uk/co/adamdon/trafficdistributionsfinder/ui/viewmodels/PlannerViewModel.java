@@ -3,6 +3,7 @@ package uk.co.adamdon.trafficdistributionsfinder.ui.viewmodels;
 import static uk.co.adamdon.trafficdistributionsfinder.App.TAG;
 
 import android.app.Application;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -33,9 +34,7 @@ public class PlannerViewModel extends AbstractViewModel
 
         setSelectedDate(new Date(new Date().getTime() + 86400000)); //default date set to tomorrow
 
-        DataFetcher.getInstance().get(ApiConfig.CURRENT_INCIDENTS_URL, (results) -> setResultsForItemList(results));
-        DataFetcher.getInstance().get(ApiConfig.ROADWORKS_URL, (results) -> setResultsForItemList(results));
-        DataFetcher.getInstance().get(ApiConfig.PLANNED_ROADWORKS_URL, (results) -> setResultsForItemList(results));
+        AsyncTask.execute(() -> setItemListLiveData(app.getAllItemsDatabase().ItemDao().getAll()));
     }
 
 
@@ -130,20 +129,20 @@ public class PlannerViewModel extends AbstractViewModel
         return itemListLiveData;
     }
 
-    public void setItemListLiveData(ArrayList<Item> currentIncidentList)
+    public void setItemListLiveData(List<Item> currentIncidentList)
     {
-        ArrayList<Item> newItemList;
-
         if(itemListLiveData == null)
         {
             itemListLiveData = new MutableLiveData<>();
-            itemListLiveData.setValue(new ArrayList<Item>());
+            itemListLiveData.postValue(new ArrayList<Item>(currentIncidentList));
         }
-
-        newItemList = new ArrayList<>(Objects.requireNonNull(itemListLiveData.getValue()));
-        newItemList.addAll(currentIncidentList);
-
-        itemListLiveData.setValue(newItemList);
+        else
+        {
+            ArrayList<Item> newItemList;
+            newItemList = new ArrayList<>(itemListLiveData.getValue());
+            newItemList.addAll(currentIncidentList);
+            itemListLiveData.postValue(newItemList);
+        }
     }
 
 

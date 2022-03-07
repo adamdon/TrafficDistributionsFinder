@@ -1,21 +1,19 @@
 package uk.co.adamdon.trafficdistributionsfinder;
 
-import android.app.Activity;
 import android.app.Application;
 import android.os.AsyncTask;
-import android.os.Bundle;
 
 import androidx.room.Room;
 
 import uk.co.adamdon.trafficdistributionsfinder.data.AppDatabase;
-import uk.co.adamdon.trafficdistributionsfinder.ui.activities.MainActivity;
 import uk.co.adamdon.trafficdistributionsfinder.ui.UiController;
 
 
 public class App extends Application
 {
     private UiController uiController;
-    AppDatabase appDatabase;
+    AppDatabase allItemsDatabase;
+    AppDatabase filteredItemsDatabase;
 
     public static final String TAG = "App";
 
@@ -25,9 +23,9 @@ public class App extends Application
         super.onCreate();
         System.out.println("trafficdistributionsfinder start up... (╯°□°)╯︵ ┻━┻");
         uiController = new UiController(this);
-
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "trafficdistributionsfinder").build();
-        AsyncTask.execute(() -> appDatabase.clearAllTables());
+        allItemsDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "allItemsDatabase").build();
+        filteredItemsDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "filteredItemsDatabase").build();
+        AsyncTask.execute(() -> allItemsDatabase.clearAllTables());
     }
 
     public UiController getUiController()
@@ -35,8 +33,13 @@ public class App extends Application
         return uiController;
     }
 
-    public AppDatabase getAppDatabase()
+    public AppDatabase getAllItemsDatabase()
     {
-        return appDatabase;
+        return allItemsDatabase;
+    }
+
+    public AppDatabase getFilteredItemsDatabase()
+    {
+        return filteredItemsDatabase;
     }
 }
