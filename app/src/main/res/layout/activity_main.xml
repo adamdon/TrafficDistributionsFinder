@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2022 Adam Don -->
+<!-- MIT License -->
+<!-- S1025475 -->
 
 <LinearLayout
     tools:context=".ui.activities.MainActivity"

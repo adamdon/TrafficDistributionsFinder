@@ -1,3 +1,7 @@
+/* Copyright (c) 2022 Adam Don
+ * MIT License
+ * S1025475
+ * */
 package uk.co.adamdon.trafficdistributionsfinder.data;
 
 import androidx.room.Dao;
