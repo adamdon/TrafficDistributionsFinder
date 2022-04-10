@@ -43,7 +43,7 @@ public class MenuFragment extends AbstractFragment
     public View onCreateView(@NonNull LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle savedInstanceState)
     {
         MenuFragmentBinding menuFragmentBinding;
-
+        confirmConnected();
         menuViewModel = new ViewModelProvider(this).get( MenuViewModel.class);
 
 

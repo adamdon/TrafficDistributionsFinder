@@ -43,7 +43,7 @@ public abstract class AbstractActivity extends AppCompatActivity
     //
     //Generic methods
     //
-    protected void showToast(String textString)
+    public void showToast(String textString)
     {
         Toast.makeText(this, textString, Toast.LENGTH_LONG).show();
     }

@@ -4,7 +4,13 @@
  * */
 package uk.co.adamdon.trafficdistributionsfinder.ui.fragments;
 
+import static uk.co.adamdon.trafficdistributionsfinder.App.TAG;
+
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.os.Build;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +23,8 @@ import androidx.fragment.app.Fragment;
 import java.util.Objects;
 
 import uk.co.adamdon.trafficdistributionsfinder.App;
+import uk.co.adamdon.trafficdistributionsfinder.ui.activities.AbstractActivity;
+import uk.co.adamdon.trafficdistributionsfinder.ui.activities.MainActivity;
 
 public abstract class AbstractFragment extends Fragment
 {
@@ -77,6 +85,26 @@ public abstract class AbstractFragment extends Fragment
         pxInt = (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpFloat, getApp().getResources().getDisplayMetrics());
 
         return pxInt;
+    }
+
+
+    public void confirmConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) requireActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivityManager != null)
+        {
+            if ((connectivityManager.getActiveNetwork() != null) && (connectivityManager.getNetworkCapabilities(connectivityManager.getActiveNetwork()) != null))
+            {
+                Log.d(TAG, "confirmConnected: Internet found");
+            }
+            else
+            {
+                Log.d(TAG, "confirmConnected: Internet NOT found");
+                ((MainActivity)requireActivity()).showToast("App Requires Internet");
+                requireActivity().finish();
+//                System.exit(0);
+            }
+        }
     }
 
 
